@@ -21,9 +21,54 @@ class JoueurTest {
         assertEquals(jTest.getCoord()[1], 4);
     }
 
-    /*@Test
+    @Test
     void distance(){
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
-    }*/
+
+        // Test P0
+        j1.deplacer(new int[] {0, 0});
+        j2.deplacer(new int[] {0, 0});
+        assertEquals(j1.distance(j2), 0);
+
+        // Test P1
+        j1.deplacer(new int[] {0, 0});
+        j2.deplacer(new int[] {2, -2});
+        assertEquals(j1.distance(j2), 4);
+
+        // Test P2
+        j1.deplacer(new int[] {0, 0});
+        j2.deplacer(new int[] {-2, 2});
+        assertEquals(j1.distance(j2), 4);
+
+        // Test P2
+        j1.deplacer(new int[] {2, -2});
+        j2.deplacer(new int[] {0, 0});
+        assertEquals(j1.distance(j2), 4);
+
+        // Test P4
+        j1.deplacer(new int[] {-2, 2});
+        j2.deplacer(new int[] {0, 0});
+        assertEquals(j1.distance(j2), 4);
+
+        // Test P5
+        j1.deplacer(new int[] {2, -2});
+        j2.deplacer(new int[] {2, -2});
+        assertEquals(j1.distance(j2), 8);
+
+        // Test P6
+        j1.deplacer(new int[] {2, -2});
+        j2.deplacer(new int[] {-2, 2});
+        assertEquals(j1.distance(j2), 8);
+
+        // Test P7
+        j1.deplacer(new int[] {-2, 2});
+        j2.deplacer(new int[] {2, -2});
+        assertEquals(j1.distance(j2), 8);
+
+        // Test P8
+        j1.deplacer(new int[] {-2, 2});
+        j2.deplacer(new int[] {-2, 2});
+        assertEquals(j1.distance(j2), 8);
+    }
 }
