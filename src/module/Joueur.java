@@ -11,10 +11,6 @@ public class Joueur extends Coordonable{
         exp = 0;
     }
 
-    public int getExp(){
-        return exp;
-    }
-
     /**
      * Mets à jour les coordonnées du joueur à celles données en paramètre.
      * @param parCoord int[2] – les coordonnées
@@ -29,5 +25,9 @@ public class Joueur extends Coordonable{
      */
     public void addExp(int expToAdd){
         exp = exp + expToAdd;
+    }
+
+    public int getExp(){
+        return exp;
     }
 }
