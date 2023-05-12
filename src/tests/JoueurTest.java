@@ -22,6 +22,15 @@ class JoueurTest {
     }
 
     @Test
+    void addExp(){
+        Joueur jTest = new Joueur();
+        jTest.addExp(15);
+        assertEquals(jTest.getExp(), 15);
+        jTest.addExp(-5);
+        assertEquals(jTest.getExp(), 10);
+    }
+
+    @Test
     void distance(){
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
