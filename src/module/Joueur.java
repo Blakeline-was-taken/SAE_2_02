@@ -15,4 +15,8 @@ public class Joueur extends Coordonable{
     public void deplacer(int[] parCoord){
         coord = parCoord;
     }
+
+    public void addExp(int expToAdd){
+        exp = exp + expToAdd;
+    }
 }
