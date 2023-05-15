@@ -1,5 +1,7 @@
 package module;
 
+import java.util.Arrays;
+
 public class Quete extends Coordonable {
     private final int[][] cond;
     private final int duree;
