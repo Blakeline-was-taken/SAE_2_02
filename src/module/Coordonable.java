@@ -20,6 +20,10 @@ public abstract class Coordonable {
         return Math.abs(coord[0]-coord2.getCoord()[0])+Math.abs(coord[1]-coord2.getCoord()[1]);
     }
 
+    public String toString() {
+        return "Localisé au point ( " + coord[0] + " ; " + coord[1] + " )";
+    }
+
     public int[] getCoord(){
         return coord;
     }

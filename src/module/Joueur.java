@@ -20,11 +20,23 @@ public class Joueur extends Coordonable{
     }
 
     /**
+     * Mets à jour les coordonnées du joueur à celles de l'objet coordonable donné en paramètre.
+     * @param parCoord Coordonable – les coordonnées
+     */
+    public void deplacer(Coordonable parCoord){
+        coord = parCoord.getCoord();
+    }
+
+    /**
      * Ajoute de l'expérience au joueur.
      * @param expToAdd int – Le montant d'expérience à ajouter au joueur
      */
     public void addExp(int expToAdd){
         exp = exp + expToAdd;
+    }
+
+    public String toString() {
+        return "Joueur - " + super.toString() + ", exp = " + exp;
     }
 
     public int getExp(){
