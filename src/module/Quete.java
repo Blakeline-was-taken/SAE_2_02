@@ -29,7 +29,6 @@ public class Quete extends Coordonable {
         validee = false;
     }
 
-    @Override
     public String toString() {
         return "Quete \"" + intitule + "\" - " + super.toString() + " - duree: " + duree +
                 " - exp: " + exp + " - preconditions: " + Arrays.deepToString(cond) + " - validee: " + validee;
