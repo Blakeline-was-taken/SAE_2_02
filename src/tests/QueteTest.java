@@ -21,4 +21,13 @@ class QueteTest {
         assertEquals(queteTest.getExp(), 120);
         assertEquals(queteTest.getIntitule(), "Patate");
     }
+
+    @Test
+    void equals(){
+        Quete q1 = new Quete(new int[] {1, 1}, new int[][] {{3, 4}, {0, 0}}, 4, 350, "vaincre Araignée lunaire");
+        Quete q2 = new Quete(new int[] {1, 1}, new int[][] {{3, 4}, {0, 0}}, 4, 350, "vaincre Araignée lunaire");
+        Quete q3 = new Quete(new int[] {4, 3}, new int[][] {{0, 0}, {0, 0}}, 2, 100, "explorer pic de Bhanborim");
+        assertEquals(q1, q2);
+        assertNotEquals(q1, q3);
+    }
 }
