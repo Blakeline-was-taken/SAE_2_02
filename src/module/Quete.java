@@ -7,7 +7,6 @@ public class Quete extends Coordonable {
     private final int duree;
     private final int exp;
     private final String intitule;
-    private boolean validee;
 
     /**
      * Constructeur de la classe quête, prenant en paramètre toutes les informations de quêtes contenues dans les
@@ -26,12 +25,11 @@ public class Quete extends Coordonable {
         duree = parDuree;
         exp = parExp;
         intitule = parIntitule;
-        validee = false;
     }
 
     public String toString() {
         return "Quete \"" + intitule + "\" - " + super.toString() + " - duree: " + duree +
-                " - exp: " + exp + " - preconditions: " + Arrays.deepToString(cond) + " - validee: " + validee;
+                " - exp: " + exp + " - preconditions: " + Arrays.deepToString(cond);
     }
 
     public int[][] getCond() {
@@ -50,14 +48,10 @@ public class Quete extends Coordonable {
         return intitule;
     }
 
-    public boolean isValidee() {
-        return validee;
-    }
-
     @Override
     public boolean equals(Object obj){
         if (obj instanceof Quete q2){
-            return Arrays.deepEquals(cond, q2.getCond()) && duree == q2.getDuree() && exp == q2.getExp() && intitule.equals(q2.getIntitule()) && validee == q2.isValidee();
+            return Arrays.deepEquals(cond, q2.getCond()) && duree == q2.getDuree() && exp == q2.getExp() && intitule.equals(q2.getIntitule());
         }
         return false;
     }
