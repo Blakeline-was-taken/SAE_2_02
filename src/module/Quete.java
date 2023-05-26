@@ -53,4 +53,12 @@ public class Quete extends Coordonable {
     public boolean isValidee() {
         return validee;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Quete q2){
+            return Arrays.deepEquals(cond, q2.getCond()) && duree == q2.getDuree() && exp == q2.getExp() && intitule.equals(q2.getIntitule()) && validee == q2.isValidee();
+        }
+        return false;
+    }
 }
