@@ -5,13 +5,16 @@ import module.Scenario;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.util.Collections;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScenarioTest {
     @Test
     public void constructeur() throws FileNotFoundException {
+        //Tests du champ quetes :
         Scenario scnTest = new Scenario("scenario_0.txt");
         TreeMap <Integer, Quete> mapTree = new TreeMap<>();
         mapTree.put(0, new Quete(new int[] {1, 1}, new int[][] {{3, 4}, {0, 0}}, 4, 350, "vaincre Araignée lunaire"));
@@ -28,6 +31,30 @@ class ScenarioTest {
             assertEquals(quest1.getDuree(), quest2.getDuree());
             assertEquals(quest1.getExp(), quest2.getExp());
             assertEquals(quest1.getIntitule(), quest2.getIntitule());
+        }
+
+        //Tests du champ successeurs :
+        TreeMap <Integer, TreeSet <Integer>> voisinsTestTree = new TreeMap<>();
+        voisinsTestTree.put(0,new TreeSet<>());
+
+        TreeSet <Integer> ts1 = new TreeSet<>();
+        ts1.add(2);
+        voisinsTestTree.put(1,ts1);
+
+        TreeSet <Integer> ts2 = new TreeSet<>();
+        Collections.addAll(ts2, 3, 4);
+        voisinsTestTree.put(2,ts2);
+
+        TreeSet <Integer> ts3 = new TreeSet<>();
+        ts3.add(0);
+        voisinsTestTree.put(3,ts3);
+
+        TreeSet <Integer> ts4 = new TreeSet<>();
+        ts4.add(0);
+        voisinsTestTree.put(4,ts4);
+
+        for (int key : voisinsTestTree.keySet()){
+            assertEquals(voisinsTestTree.get(key), scnTest.getSuccesseurs().get(key));
         }
     }
 }
