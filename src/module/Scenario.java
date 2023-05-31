@@ -66,6 +66,10 @@ public class Scenario {
         }
     }
 
+    public void validerQuete(int queteId){
+        quetesValidees.add(queteId);
+    }
+
     public Quete getQuete(int queteId){
         return quetes.get(queteId);
     }
