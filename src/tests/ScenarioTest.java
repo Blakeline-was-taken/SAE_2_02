@@ -66,4 +66,14 @@ class ScenarioTest {
             assertEquals(mapTree.get(queteId),scnTest.getQuete(queteId));
         }
     }
+
+    @Test
+    public void validerQuete() throws FileNotFoundException {
+        Scenario scnTest = new Scenario("scenario_0.txt");
+        scnTest.validerQuete(1);
+        assertTrue(scnTest.getQuetesValidees().contains(1));
+        scnTest.validerQuete(2);
+        assertTrue(scnTest.getQuetesValidees().contains(2));
+        assertFalse(scnTest.getQuetesValidees().contains(0));
+    }
 }
