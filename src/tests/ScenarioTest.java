@@ -76,4 +76,17 @@ class ScenarioTest {
         assertTrue(scnTest.getQuetesValidees().contains(2));
         assertFalse(scnTest.getQuetesValidees().contains(0));
     }
+
+    @Test
+    public void getAccessibleQuetes() throws FileNotFoundException {
+        Scenario scnTest = new Scenario("scenario_0.txt");
+        assertTrue(scnTest.getAccessibleQuetes().contains(1));
+        assertFalse(scnTest.getAccessibleQuetes().contains(0));
+        assertFalse(scnTest.getAccessibleQuetes().contains(2));
+        assertFalse(scnTest.getAccessibleQuetes().contains(3));
+
+        scnTest.validerQuete(1);
+        assertTrue(scnTest.getAccessibleQuetes().contains(2));
+        assertFalse(scnTest.getAccessibleQuetes().contains(1));
+    }
 }
