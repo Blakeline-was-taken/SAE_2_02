@@ -70,6 +70,23 @@ public class Scenario {
         quetesValidees.add(queteId);
     }
 
+    public TreeSet <Integer> getAccessibleQuetes(){
+        TreeSet <Integer> quetesAccassibles = new TreeSet<>();
+        for (int IDQuete : quetes.keySet()){
+            if (!quetesValidees.contains(IDQuete)){
+                int[][] precond = quetes.get(IDQuete).getCond();
+                boolean[] validate = new boolean[2];
+                for (int i = 0; i < 2; i++){
+                    validate[i] = precond[i][0] == 0 || quetesValidees.contains(precond[i][0]) || quetesValidees.contains(precond[i][1]);
+                }
+                if (validate[0] && validate[1]) {
+                    quetesAccassibles.add(IDQuete);
+                }
+            }
+        }
+        return quetesAccassibles;
+    }
+
     public Quete getQuete(int queteId){
         return quetes.get(queteId);
     }
