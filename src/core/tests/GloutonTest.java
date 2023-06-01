@@ -7,6 +7,7 @@ import module.Scenario;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 class GloutonTest {
 
@@ -15,7 +16,7 @@ class GloutonTest {
         Glouton glTest = new Glouton(0);
         // Vérification de la création du Joueur
         Joueur jTest = glTest.getJoueur();
-        assertEquals(new int[] {0, 0}, jTest.getCoord());
+        assertEquals(Arrays.toString((new int[]{0, 0})), Arrays.toString(jTest.getCoord()));
         assertEquals(0, jTest.getExp());
         
         //Vérification de la création du Scenario
@@ -27,7 +28,7 @@ class GloutonTest {
     }
 
     @Test
-    public void queteLaPlusProche(){
+    public void queteLaPlusProche() throws FileNotFoundException {
         Glouton glTest = new Glouton(0);
         Scenario scTest = glTest.getScenario();
         Joueur jTest = glTest.getJoueur();
