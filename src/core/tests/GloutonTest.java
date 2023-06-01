@@ -14,6 +14,7 @@ class GloutonTest {
     @Test
     public void constructeur() throws FileNotFoundException {
         Glouton glTest = new Glouton(0);
+
         // Vérification de la création du Joueur
         Joueur jTest = glTest.getJoueur();
         assertEquals(Arrays.toString((new int[]{0, 0})), Arrays.toString(jTest.getCoord()));
