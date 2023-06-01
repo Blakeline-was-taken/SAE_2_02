@@ -1,4 +1,4 @@
-package tests;
+package module.tests;
 
 import module.Quete;
 import module.Scenario;

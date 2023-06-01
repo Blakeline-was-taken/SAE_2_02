@@ -1,4 +1,4 @@
-package tests;
+package module.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import module.Joueur;

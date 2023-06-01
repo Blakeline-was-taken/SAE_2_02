@@ -10,7 +10,7 @@ public abstract class BaseMoteur {
     protected final Scenario scenario;
 
     protected BaseMoteur(int idScenario){
-        
+
     }
 
     public int queteLaPlusProche(){
