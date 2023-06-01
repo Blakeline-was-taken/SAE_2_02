@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 
-class GloutonTest {
+class BaseMoteurTest {
 
     @Test
     public void constructeur() throws FileNotFoundException {
