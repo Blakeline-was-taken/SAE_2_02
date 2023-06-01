@@ -19,7 +19,15 @@ public abstract class BaseMoteur {
     }
 
     public int queteLaPlusProche(){
-        return 0;
+        TreeSet <Integer> quetesAccessibles = scenario.getAccessibleQuetes();
+        int closest_id = quetesAccessibles.first();
+        quetesAccessibles.remove(closest_id);
+        for (int IDQuete : quetesAccessibles){
+            if (joueur.distance(scenario.getQuete(IDQuete)) < joueur.distance(scenario.getQuete(closest_id))){
+                closest_id = IDQuete;
+            }
+        }
+        return closest_id;
     }
 
     public abstract int[] run(boolean isEfficace);
