@@ -28,7 +28,7 @@ public class Scenario {
             posScan.useDelimiter(",");
             int [] position = {posScan.nextInt(), posScan.nextInt()};
 
-            String preStr = quete.next().replace("(", "").replace(")", "");
+            String preStr = quete.next().replace("(", "").replace(")", "").replace(" ", "");
             Scanner preScan = new Scanner(preStr);
             preScan.useDelimiter(",");
             int [][] precondition = new int[2][2];
