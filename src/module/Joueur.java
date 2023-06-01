@@ -15,16 +15,20 @@ public class Joueur extends Coordonable{
      * Mets à jour les coordonnées du joueur à celles données en paramètre.
      * @param parCoord int[2] – les coordonnées
      */
-    public void deplacer(int[] parCoord){
+    public int deplacer(int[] parCoord){
+        int dist = Math.abs(parCoord[0] - coord[0]) + Math.abs(parCoord[1] - coord[1]);
         coord = parCoord;
+        return dist;
     }
 
     /**
      * Mets à jour les coordonnées du joueur à celles de l'objet coordonable donné en paramètre.
      * @param parCoord Coordonable – les coordonnées
      */
-    public void deplacer(Coordonable parCoord){
+    public int deplacer(Coordonable parCoord){
+        int dist = distance(parCoord);
         coord = parCoord.getCoord();
+        return dist;
     }
 
     /**
