@@ -6,6 +6,7 @@ import module.Scenario;
 
 import java.io.FileNotFoundException;
 import java.net.IDN;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 public abstract class BaseMoteur {
@@ -20,6 +21,9 @@ public abstract class BaseMoteur {
 
     public int queteLaPlusProche(){
         TreeSet <Integer> quetesAccessibles = scenario.getAccessibleQuetes();
+        if (quetesAccessibles.first() == 0){
+            quetesAccessibles.remove(0);
+        }
         int closest_id = quetesAccessibles.first();
         quetesAccessibles.remove(closest_id);
         for (int IDQuete : quetesAccessibles){
@@ -30,7 +34,7 @@ public abstract class BaseMoteur {
         return closest_id;
     }
 
-    public abstract int[] run(boolean isEfficace);
+    public abstract ArrayList <Integer> run(boolean isEfficace);
 
     protected abstract int getNextEfficace();
 
