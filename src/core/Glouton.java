@@ -1,7 +1,5 @@
 package core;
 
-import module.Quete;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
