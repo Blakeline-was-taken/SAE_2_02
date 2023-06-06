@@ -27,6 +27,10 @@ public class SpeedrunTest {
         spTest = new Speedrun(10);
         resultEff = spTest.run(true);
 
+        spTest = new Speedrun(10);
+        resultExh = spTest.run(false);
+
         assertEquals(Arrays.toString(new int[] {2, 18, 3, 0}), resultEff.toString());
+        assertEquals(Arrays.toString(new int[] {2, 18, 8, 3, 16, 12, 4, 15, 1, 10, 17, 9, 14, 11, 6, 7, 13, 5, 0}), resultExh.toString());
     }
 }
