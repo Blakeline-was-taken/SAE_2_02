@@ -31,17 +31,15 @@ public class Glouton extends BaseMoteur{
     protected int getNextEfficace() {
         if (scenario.getAccessibleQuetes().contains(0) && joueur.getExp() >= scenario.getQuete(0).getExp()){
             return 0;
-        } else {
-            return queteLaPlusProche();
         }
+        return queteLaPlusProche();
     }
 
     @Override
     protected int getNextExhaustif() {
         if (scenario.getAccessibleQuetes().contains(0) && scenario.getAccessibleQuetes().size() == 1){
             return 0;
-        } else {
-            return queteLaPlusProche();
         }
+        return queteLaPlusProche();
     }
 }
