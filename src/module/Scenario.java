@@ -102,4 +102,8 @@ public class Scenario {
     public TreeSet<Integer> getQuetesValidees() {
         return quetesValidees;
     }
+
+    public void clearQuetesValidees(){
+        quetesValidees.clear();
+    }
 }

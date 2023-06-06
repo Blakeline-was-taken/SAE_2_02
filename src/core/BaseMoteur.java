@@ -1,6 +1,7 @@
 package core;
 
 import module.Joueur;
+import module.Quete;
 import module.Scenario;
 
 import java.io.FileNotFoundException;
@@ -44,5 +45,15 @@ public abstract class BaseMoteur {
 
     public Scenario getScenario(){
         return scenario;
+    }
+
+    public int calculDuree(ArrayList <Integer> solution){
+        int duree = 0;
+        Joueur j = new Joueur();
+        for (int IDQuete : solution){
+            Quete current = scenario.getQuete(IDQuete);
+            duree += j.deplacer(current) + current.getDuree();
+        }
+        return duree;
     }
 }
