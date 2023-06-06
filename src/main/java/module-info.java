@@ -5,5 +5,8 @@ module com.example.sae_2_ {
 
 
     opens vue to javafx.fxml;
+    exports module;
+    exports core;
+    exports controleur;
     exports vue;
 }
