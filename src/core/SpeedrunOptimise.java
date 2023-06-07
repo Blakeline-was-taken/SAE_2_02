@@ -1,6 +1,6 @@
 package core;
 
-import module.Quete;
+import modele.Quete;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

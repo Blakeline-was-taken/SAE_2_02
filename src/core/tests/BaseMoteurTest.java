@@ -2,8 +2,8 @@ package core.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import core.Glouton;
-import module.Joueur;
-import module.Scenario;
+import modele.Joueur;
+import modele.Scenario;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
@@ -20,7 +20,7 @@ class BaseMoteurTest {
         Joueur jTest = glTest.getJoueur();
         assertEquals(Arrays.toString((new int[]{0, 0})), Arrays.toString(jTest.getCoord()));
         assertEquals(0, jTest.getExp());
-        
+
         //Vérification de la création du Scenario
         Scenario scnTest = glTest.getScenario();
         Scenario scnCheck = new Scenario("scenario_0.txt");

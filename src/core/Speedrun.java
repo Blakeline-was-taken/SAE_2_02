@@ -1,7 +1,7 @@
 package core;
 
-import module.Quete;
-import module.Scenario;
+import modele.Quete;
+import modele.Scenario;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
