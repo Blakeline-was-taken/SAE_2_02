@@ -1,4 +1,4 @@
-package main.java.modele;
+package modele;
 
 /**
  * La classe Joueur représente un joueur avec des coordonnées et de l'expérience.

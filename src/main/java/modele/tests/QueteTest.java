@@ -1,9 +1,9 @@
 /**
  * Classe de test pour la classe Quete.
  */
-package main.java.modele.tests;
+package modele.tests;
 
-import main.java.modele.Quete;
+import modele.Quete;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

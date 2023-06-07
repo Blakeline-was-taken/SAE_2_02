@@ -1,9 +1,9 @@
-package main.java.core.tests;
+package core.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-import main.java.core.Glouton;
-import main.java.modele.Joueur;
-import main.java.modele.Scenario;
+import core.Glouton;
+import modele.Joueur;
+import modele.Scenario;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;

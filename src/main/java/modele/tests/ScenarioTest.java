@@ -1,7 +1,7 @@
-package main.java.modele.tests;
+package modele.tests;
 
-import main.java.modele.Quete;
-import main.java.modele.Scenario;
+import modele.Quete;
+import modele.Scenario;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;

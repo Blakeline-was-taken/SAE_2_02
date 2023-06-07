@@ -1,8 +1,8 @@
-package main.java.core;
+package core;
 
-import main.java.modele.Joueur;
-import main.java.modele.Quete;
-import main.java.modele.Scenario;
+import modele.Joueur;
+import modele.Quete;
+import modele.Scenario;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

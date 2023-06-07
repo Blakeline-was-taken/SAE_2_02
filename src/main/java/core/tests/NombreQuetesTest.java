@@ -1,6 +1,6 @@
-package main.java.core.tests;
+package core.tests;
 
-import main.java.core.NombreQuetes;
+import core.NombreQuetes;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
