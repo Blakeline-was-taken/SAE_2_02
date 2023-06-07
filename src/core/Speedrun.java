@@ -7,19 +7,16 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class Speedrun extends BaseMoteur{
+public class Speedrun extends BaseMoteurOptimal{
 
     private final TreeMap<Integer, Integer> dureeSolutions = new TreeMap<>();
-    private final String scenarioName;
 
     public Speedrun(int idScenario) throws FileNotFoundException {
         super(idScenario);
-        scenarioName = "scenario_"+idScenario+".txt";
     }
 
     public Speedrun(int idScenario, int nombre_solutions) throws FileNotFoundException {
         super(idScenario, nombre_solutions);
-        scenarioName = "scenario_"+idScenario+".txt";
     }
 
     @Override
