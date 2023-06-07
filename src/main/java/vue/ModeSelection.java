@@ -88,9 +88,9 @@ public class ModeSelection extends HBox {
         dureeBtn.setOnAction(modeControleur);
         dureeBtn.setUserData("Duree");
 
-        ToggleButton expBtn = new ToggleButton("Experience");
+        ToggleButton expBtn = new ToggleButton("Nombre de quêtes");
         expBtn.setOnAction(modeControleur);
-        expBtn.setUserData("Exp");
+        expBtn.setUserData("NbQuest");
 
         ToggleButton distBtn = new ToggleButton("Distance");
         distBtn.setOnAction(modeControleur);
@@ -119,15 +119,18 @@ public class ModeSelection extends HBox {
         typeCmb.getSelectionModel().select(0);
 
         Label nbSolLbl = new Label("Nombre de\nsolutions :");
-
         nbSolTxt = new TextField("5");
-        Button txtSolBtn = new Button("Afficher ces solutions");
+
+        ToggleGroup nbSolGroup = new ToggleGroup();
+        ToggleButton txtSolBtn = new ToggleButton("Afficher ces solutions");
         txtSolBtn.setOnAction(modeControleur);
         txtSolBtn.setUserData("Texte");
 
-        Button allSolBtn = new Button("Afficher toutes les solutions");
+        ToggleButton allSolBtn = new ToggleButton("Afficher toutes les solutions");
         allSolBtn.setOnAction(modeControleur);
         allSolBtn.setUserData("Toutes");
+        nbSolGroup.getToggles().addAll(txtSolBtn, allSolBtn);
+        nbSolGroup.setUserData("NbSol");
 
         nbSolCol.getChildren().addAll(typeLbl, typeCmb, new Separator(), nbSolLbl, nbSolTxt, txtSolBtn, allSolBtn);
 
@@ -149,6 +152,10 @@ public class ModeSelection extends HBox {
         solBox.getChildren().add(submitBtn);
 
         field.addAll(new Separator(Orientation.VERTICAL), solBox);
+    }
+
+    public static ModeSelectionControleur getModeControleur(){
+        return modeControleur;
     }
 
     public static ObservableList<Node> getAfterModeField(){
