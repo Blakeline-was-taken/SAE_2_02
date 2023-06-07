@@ -50,22 +50,6 @@ public class ModeSelection extends HBox {
         getChildren().addAll(new Separator(Orientation.VERTICAL), modeCol, afterModeBox);
     }
 
-    public static ObservableList<Node> getAfterModeField(){
-        return afterModeField;
-    }
-
-    public static ObservableList<Node> getAfterMethodField(){
-        return afterMethodField;
-    }
-
-    public static ObservableList<Node> getAfterOptiField(){
-        return afterOptiField;
-    }
-
-    public static ObservableList<Node> getAfterNbSolField(){
-        return afterNbSolField;
-    }
-
     public static void addMethodePanel(ObservableList<Node> field){
         VBox methodCol = new VBox(50);
         methodCol.setPadding(new Insets(30));
@@ -165,6 +149,22 @@ public class ModeSelection extends HBox {
         solBox.getChildren().add(submitBtn);
 
         field.addAll(new Separator(Orientation.VERTICAL), solBox);
+    }
+
+    public static ObservableList<Node> getAfterModeField(){
+        return afterModeField;
+    }
+
+    public static ObservableList<Node> getAfterMethodField(){
+        return afterMethodField;
+    }
+
+    public static ObservableList<Node> getAfterOptiField(){
+        return afterOptiField;
+    }
+
+    public static ObservableList<Node> getAfterNbSolField(){
+        return afterNbSolField;
     }
 
     public static String getSelectedMode() {
