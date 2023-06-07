@@ -14,6 +14,7 @@ public abstract class BaseMoteur {
     protected final Scenario scenario;
     protected final int nbSolutions;
     protected final ArrayList<Integer>[] solutions;
+    protected boolean meilleuresSolutions;
 
     protected BaseMoteur(int idScenario) throws FileNotFoundException {
         joueur = new Joueur();
