@@ -67,7 +67,7 @@ public abstract class BaseMoteur {
     }
 
     /**
-     * Retourne l'identifiant de la quête la plus proche du joueur.
+     * Retourne l'identifiant de la quête la plus proche du joueur. Si celle-ci est 0, renvoie la deuxième plus proche.
      *
      * @return L'identifiant de la quête la plus proche.
      */

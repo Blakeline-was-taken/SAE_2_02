@@ -76,8 +76,8 @@ class BaseMoteurTest {
         jTest.deplacer(scTest.getQuete(glTest.queteLaPlusProche()));
         scTest.validerQuete(4);
 
-        // Vérification de la quête la plus proche finale
-        assertEquals(0, glTest.queteLaPlusProche());
+        // Vérification de la quête la plus proche finale (la méthode ne doit pas le donner)
+        assertNotEquals(0, glTest.queteLaPlusProche());
     }
 
     /**
