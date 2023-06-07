@@ -44,11 +44,7 @@ public abstract class BaseMoteur {
         return closest_id;
     }
 
-    public abstract ArrayList<Integer>[] run(boolean isEfficace);
-
-    protected abstract int getNextEfficace();
-
-    protected abstract int getNextExhaustif();
+    public abstract ArrayList<Integer>[] run(boolean isEfficace, boolean bestSolutions);
 
     public Joueur getJoueur(){
         return joueur;

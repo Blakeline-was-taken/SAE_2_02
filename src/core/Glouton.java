@@ -14,7 +14,7 @@ public class Glouton extends BaseMoteur{
     }
 
     @Override
-    public ArrayList<Integer>[] run(boolean isEfficace) {
+    public ArrayList<Integer>[] run(boolean isEfficace, boolean bestSolutions) {
         ArrayList <Integer> solution = new ArrayList<>();
         while (!scenario.getQuetesValidees().contains(0)){
             int current;
@@ -32,7 +32,6 @@ public class Glouton extends BaseMoteur{
         return solutions;
     }
 
-    @Override
     protected int getNextEfficace() {
         if (scenario.getAccessibleQuetes().contains(0) && joueur.getExp() >= scenario.getQuete(0).getExp()){
             return 0;
@@ -40,7 +39,6 @@ public class Glouton extends BaseMoteur{
         return queteLaPlusProche();
     }
 
-    @Override
     protected int getNextExhaustif() {
         if (scenario.getAccessibleQuetes().contains(0) && scenario.getAccessibleQuetes().size() == 1){
             return 0;

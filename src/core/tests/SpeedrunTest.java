@@ -16,7 +16,7 @@ public class SpeedrunTest {
     public void run() throws FileNotFoundException {
         // test scenario 0
         Speedrun spTest = new Speedrun(0, 10);
-        ArrayList<Integer>[] resultEff = spTest.run(true);
+        ArrayList<Integer>[] resultEff = spTest.run(true, true);
         assertEquals(Arrays.toString(new int[] {1, 2, 4, 0}), resultEff[0].toString());
         assertEquals(Arrays.toString(new int[] {1, 2, 3, 0}), resultEff[1].toString());
         assertEquals(Arrays.toString(new int[] {1, 2, 4, 3, 0}), resultEff[2].toString());
@@ -24,7 +24,7 @@ public class SpeedrunTest {
         assertNull(resultEff[4]);
 
         spTest = new Speedrun(0, 5);
-        ArrayList<Integer>[] resultExh = spTest.run(false);
+        ArrayList<Integer>[] resultExh = spTest.run(false, true);
         assertEquals(Arrays.toString(new int[] {1, 2, 4, 3, 0}), resultExh[0].toString());
         assertEquals(Arrays.toString(new int[] {1, 2, 3, 4, 0}), resultExh[1].toString());
         assertNull(resultExh[2]);

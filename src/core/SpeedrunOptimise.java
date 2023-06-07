@@ -13,7 +13,7 @@ public class SpeedrunOptimise extends BaseMoteur {
     }
 
     @Override
-    public ArrayList<Integer>[] run(boolean isEfficace) {
+    public ArrayList<Integer>[] run(boolean isEfficace, boolean bestSolutions) {
         ArrayList<Integer> solution = new ArrayList<>();
         if (isEfficace) {
             // Solution efficace
@@ -195,12 +195,6 @@ public class SpeedrunOptimise extends BaseMoteur {
         return solution;
     }
 
-    @Override
-    protected int getNextEfficace() {
-        return 0;
-    }
-
-    @Override
     protected int getNextExhaustif() {
         if (scenario.getAccessibleQuetes().contains(0) && scenario.getAccessibleQuetes().size() == 1) {
             return 0;
