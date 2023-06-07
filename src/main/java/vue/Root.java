@@ -48,32 +48,50 @@ public class Root extends HBox {
         leftField.setPadding(new Insets(10));
         leftField.setAlignment(Pos.CENTER);
 
-        VBox scnBox = new VBox();
-        Label scnTitleLbl = new Label("Scénario sélectionné :");
-        Label scnLbl = new Label(getSelectedScn().replace(".txt", "").replace("_", " "));
-        scnLbl.setStyle("-fx-text-fill: #3b3bb4; -fx-font-weight: bold");
-        scnBox.setPadding(new Insets(20));
-        scnBox.getChildren().addAll(scnTitleLbl, scnLbl);
-
-        VBox modeBox = new VBox();
-        Label modeTitleLbl = new Label("Mode de parcours :");
-        Label modeLbl = new Label(mode);
-        modeLbl.setStyle("-fx-text-fill: #3b3bb4; -fx-font-weight: bold");
-        modeBox.setPadding(new Insets(20));
-        modeBox.getChildren().addAll(modeTitleLbl, modeLbl);
-
-        VBox methodeBox = new VBox();
-        Label methodeTitleLbl = new Label("Méthode de parcours :");
-        Label methodeLbl = new Label(methode);
-        methodeLbl.setStyle("-fx-text-fill: #3b3bb4; -fx-font-weight: bold");
-        methodeBox.setPadding(new Insets(20));
-        methodeBox.getChildren().addAll(methodeTitleLbl, methodeLbl);
+        VBox scnBox = createVBoxParametre(getSelectedScn().replace(".txt", "").replace("_", " "), "Scénario sélectionné :");
+        VBox modeBox = createVBoxParametre(mode, "Mode de parcours :");
+        VBox methodeBox = createVBoxParametre(methode, "Méthode de parcours :");
 
         Button newSolution = new Button("Nouvelle simulation");
         newSolution.setOnAction(ModeSelection.getModeControleur());
         newSolution.setUserData("New");
 
         leftField.getChildren().addAll(scnBox, modeBox, methodeBox, newSolution);
+    }
+
+    public static void initSolutionView(String mode, String methode, String opti, String nbSol, String typeSol){
+        leftField.getChildren().clear();
+        rightField.clear();
+        leftField.setPadding(new Insets(10));
+        leftField.setAlignment(Pos.CENTER);
+
+        VBox scnBox = createVBoxParametre(getSelectedScn().replace(".txt", "").replace("_", " "), "Scénario sélectionné :");
+        VBox modeBox = createVBoxParametre(mode, "Mode de parcours :");
+        VBox optiBox = createVBoxParametre(opti, "Type d'optimisation :");
+        VBox methodeBox = createVBoxParametre(methode, "Méthode de parcours :");
+        VBox nbSolBox;
+        if (Integer.parseInt(nbSol) == Integer.MAX_VALUE) {
+            nbSolBox = createVBoxParametre("Toutes", "Nombre de solutions :");
+        } else {
+            nbSolBox = createVBoxParametre(nbSol, "Nombre de solutions :");
+        }
+        VBox typeSolBox = createVBoxParametre(typeSol, "Type de solutions :");
+
+        Button newSolution = new Button("Nouvelle simulation");
+        newSolution.setOnAction(ModeSelection.getModeControleur());
+        newSolution.setUserData("New");
+
+        leftField.getChildren().addAll(scnBox, modeBox, optiBox, methodeBox, typeSolBox, nbSolBox, newSolution);
+    }
+
+    private static VBox createVBoxParametre(String param, String intitule){
+        VBox paramBox = new VBox();
+        Label paramTitleLbl = new Label(intitule);
+        Label paramLbl = new Label(param);
+        paramLbl.setStyle("-fx-text-fill: #3b3bb4; -fx-font-weight: bold");
+        paramBox.setPadding(new Insets(15));
+        paramBox.getChildren().addAll(paramTitleLbl, paramLbl);
+        return paramBox;
     }
 
     public static void setSelectedScn(String scnStr){

@@ -13,7 +13,6 @@ import vue.UniqueSolutionsView;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ModeSelectionControleur implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event){
@@ -56,9 +55,9 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                             if (ModeSelection.getAfterNbSolField().size() > 0) {
                                 ModeSelection.getAfterNbSolField().clear();
                             }
-                            Scanner scanTxtField = new Scanner(ModeSelection.getNbSol());
                             try {
-                                ModeSelection.setSelectedNbSol(scanTxtField.nextInt());
+                                assert Integer.parseInt(ModeSelection.getNbSol()) > 0;
+                                ModeSelection.setSelectedNbSol(Integer.parseInt(ModeSelection.getNbSol()));
                                 ModeSelection.setSelectedTypeSol(ModeSelection.getTypeSol());
                                 ModeSelection.showSolution(ModeSelection.getAfterNbSolField());
                             } catch (Exception e) {
@@ -96,7 +95,29 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                             throw new RuntimeException(e);
                         }
                     } else if (mode.equals("Optimise")) {
-                        return; // TODO : Check si = 1 (afficher en 1 solution comme glouton) sinon multiple sol avec tableau
+                        switch (ModeSelection.getSelectedOpti()){
+                            case "Duree" -> {
+                                if (ModeSelection.getSelectedTypeSol().equals("Meilleures")){
+
+                                } else {
+
+                                }
+                            }
+                            case "NbQuest" -> {
+                                if (ModeSelection.getSelectedTypeSol().equals("Meilleures")){
+
+                                } else {
+
+                                }
+                            }
+                            case "Dist" -> {
+                                if (ModeSelection.getSelectedTypeSol().equals("Meilleures")){
+
+                                } else {
+
+                                }
+                            }
+                        }
                     }
                 }
                 case "New" -> Root.initSelectionView();
