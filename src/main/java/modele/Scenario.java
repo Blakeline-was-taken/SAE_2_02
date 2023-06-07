@@ -1,4 +1,4 @@
-package modele;
+package main.java.modele;
 
 import java.io.File;
 import java.io.FileNotFoundException;

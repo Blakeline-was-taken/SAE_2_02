@@ -1,6 +1,6 @@
-package core.tests;
+package main.java.core.tests;
 
-import core.Lazy;
+import main.java.core.Lazy;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;

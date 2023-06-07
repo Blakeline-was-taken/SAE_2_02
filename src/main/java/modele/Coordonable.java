@@ -1,4 +1,4 @@
-package modele;
+package main.java.modele;
 
 /**
  * La classe abstraite Coordonable représente un objet ayant des coordonnées.

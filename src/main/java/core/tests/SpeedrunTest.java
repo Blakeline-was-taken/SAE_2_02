@@ -1,6 +1,6 @@
-package core.tests;
+package main.java.core.tests;
 
-import core.Speedrun;
+import main.java.core.Speedrun;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;

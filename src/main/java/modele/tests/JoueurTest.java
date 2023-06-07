@@ -1,7 +1,7 @@
-package modele.tests;
+package main.java.modele.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-import modele.Joueur;
+import main.java.modele.Joueur;
 import org.junit.jupiter.api.Test;
 
 /**

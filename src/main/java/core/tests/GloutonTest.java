@@ -1,7 +1,7 @@
-package core.tests;
+package main.java.core.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-import core.Glouton;
+import main.java.core.Glouton;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
