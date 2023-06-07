@@ -4,6 +4,12 @@ package modele;
  * La classe abstraite Coordonable représente un objet ayant des coordonnées.
  */
 public abstract class Coordonable {
+
+    /**
+     * Les coordonnées de l'objet Coordonable.
+     * Les coordonnées sont représentées par un tableau d'entiers de taille 2,
+     * où la première valeur correspond à la coordonnée X et la deuxième valeur correspond à la coordonnée Y.
+     */
     protected int[] coord;
 
     /**

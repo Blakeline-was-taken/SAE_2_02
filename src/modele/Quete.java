@@ -7,10 +7,27 @@ import java.util.Arrays;
  * Elle hérite de la classe abstraite Coordonable.
  */
 public class Quete extends Coordonable {
+
+    /**
+     * Les préconditions de la quête.
+     */
     private final int[][] cond;
+
+    /**
+     * La durée de la quête.
+     */
     private final int duree;
+
+    /**
+     * L'expérience donnée par la quête.
+     */
     private final int exp;
+
+    /**
+     * L'intitulé de la quête.
+     */
     private final String intitule;
+
 
     /**
      * Constructeur de la classe Quete, prenant en paramètre toutes les informations de quête contenues dans les fichiers scénarios,

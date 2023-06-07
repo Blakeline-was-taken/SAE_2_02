@@ -11,8 +11,21 @@ import java.util.TreeSet;
  * Elle permet de charger et de manipuler les données d'un scénario à partir d'un fichier.
  */
 public class Scenario {
+
+    /**
+     * Les quêtes du scénario, indexées par leur identifiant.
+     */
     private final TreeMap<Integer, Quete> quetes;
+
+    /**
+     * Les successeurs de chaque quête, représentés par un ensemble d'identifiants de quêtes.
+     * Les successeurs d'une quête sont les quêtes qui ont cette quête comme précondition.
+     */
     private final TreeMap<Integer, TreeSet<Integer>> successeurs;
+
+    /**
+     * Les identifiants des quêtes validées dans le scénario.
+     */
     private final TreeSet<Integer> quetesValidees;
 
     /**

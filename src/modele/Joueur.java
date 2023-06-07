@@ -5,6 +5,11 @@ package modele;
  * Elle hérite de la classe abstraite Coordonable.
  */
 public class Joueur extends Coordonable{
+
+    /**
+     * L'expérience du joueur.
+     * Il s'agit d'un entier représentant le montant d'expérience accumulé par le joueur.
+     */
     private int exp;
 
     /**
