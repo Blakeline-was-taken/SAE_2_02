@@ -86,7 +86,7 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                             String scn = Root.getSelectedScn();
                             scn = scn.replace("scenario_", "").replace(".txt", "");
                             Glouton parcours = new Glouton(Integer.parseInt(scn));
-                            ArrayList<Integer> solution = parcours.run(methode.equals("Efficace"));
+                            ArrayList<Integer>[] solution = parcours.run(methode.equals("Efficace"), false);
 
                             Root.initSolutionView(mode, methode);
                             Root.getRightField().clear();

@@ -1,11 +1,14 @@
-module com.example.sae_2_ {
+module com.example.test {
     requires javafx.controls;
     requires javafx.fxml;
-    requires org.junit.jupiter.api;
 
-    opens vue to javafx.fxml;
-    exports module;
+    requires org.controlsfx.controls;
+    requires org.junit.jupiter.api;
+    requires org.junit.platform.commons;
+
+    opens com.example.test to javafx.fxml;
+    exports vue;
+    exports modele;
     exports core;
     exports controleur;
-    exports vue;
 }

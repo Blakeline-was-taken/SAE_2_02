@@ -6,16 +6,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.VBox;
-import module.Joueur;
-import module.Quete;
-import module.Scenario;
+import modele.Joueur;
+import modele.Quete;
+import modele.Scenario;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class UniqueSolutionsView extends VBox {
-    public UniqueSolutionsView(ArrayList<Integer> solution) throws FileNotFoundException {
+    public UniqueSolutionsView(ArrayList<Integer>[] solutions) throws FileNotFoundException {
+        ArrayList<Integer> solution = solutions[0];
         VBox display = new VBox(5);
         display.setPadding(new Insets(50));
 

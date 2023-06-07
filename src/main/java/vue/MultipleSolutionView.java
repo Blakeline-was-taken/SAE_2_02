@@ -5,9 +5,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import module.Joueur;
-import module.Quete;
-import module.Scenario;
+import modele.Joueur;
+import modele.Quete;
+import modele.Scenario;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
-import module.Scenario;
+import modele.Scenario;
 import vue.ModeSelection;
 import vue.Root;
 import vue.ScenarioPreview;

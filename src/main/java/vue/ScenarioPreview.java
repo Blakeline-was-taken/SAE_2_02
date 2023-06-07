@@ -6,8 +6,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import module.Quete;
-import module.Scenario;
+import modele.Quete;
+import modele.Scenario;
 
 public class ScenarioPreview extends VBox {
     public ScenarioPreview(Scenario scn){
