@@ -9,6 +9,10 @@ public class Glouton extends BaseMoteur{
         super(idScenario);
     }
 
+    public Glouton(int idScenario, int nombre_solutions) throws FileNotFoundException {
+        super(idScenario, nombre_solutions);
+    }
+
     @Override
     public ArrayList <Integer> run(boolean isEfficace) {
         ArrayList <Integer> solution = new ArrayList<>();
