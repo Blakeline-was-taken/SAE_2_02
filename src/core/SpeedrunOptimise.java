@@ -6,12 +6,29 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+/**
+ * La classe SpeedrunOptimise représente un moteur de jeu utilisant une approche optimisée pour résoudre le scénario.
+ * Elle hérite de la classe BaseMoteur et implémente une version optimisée de la méthode run.
+ */
 public class SpeedrunOptimise extends BaseMoteur {
 
+    /**
+     * Construit un objet SpeedrunOptimise avec l'identifiant du scénario donné.
+     *
+     * @param idScenario l'identifiant du scénario
+     * @throws FileNotFoundException si le fichier du scénario n'est pas trouvé
+     */
     public SpeedrunOptimise(int idScenario) throws FileNotFoundException {
         super(idScenario);
     }
 
+    /**
+     * Exécute le moteur de jeu en utilisant une approche optimisée pour résoudre le scénario.
+     *
+     * @param isEfficace     indique si l'approche doit être efficace ou exhaustive
+     * @param bestSolutions  indique si les meilleures solutions doivent être retournées
+     * @return un tableau contenant les solutions
+     */
     @Override
     public ArrayList<Integer>[] run(boolean isEfficace, boolean bestSolutions) {
         ArrayList<Integer> solution = new ArrayList<>();
@@ -72,6 +89,12 @@ public class SpeedrunOptimise extends BaseMoteur {
         return solutions;
     }
 
+    /**
+     * Applique l'algorithme de Dijkstra pour trouver le chemin le plus court depuis la quête de départ jusqu'aux autres quêtes.
+     *
+     * @param queteDebut l'identifiant de la quête de départ
+     * @return un TreeMap contenant les prédécesseurs de chaque quête dans le chemin le plus court
+     */
     private TreeMap<Integer, Integer> dijkstra(int queteDebut) {
         TreeMap<Integer, Integer> pred = new TreeMap<>();
         TreeMap<Integer, Integer> dist = new TreeMap<>();
@@ -195,6 +218,11 @@ public class SpeedrunOptimise extends BaseMoteur {
         return solution;
     }
 
+    /**
+     * Trouve la prochaine quête à effectuer dans l'approche exhaustive.
+     *
+     * @return l'identifiant de la prochaine quête à effectuer
+     */
     protected int getNextExhaustif() {
         if (scenario.getAccessibleQuetes().contains(0) && scenario.getAccessibleQuetes().size() == 1) {
             return 0;
