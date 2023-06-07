@@ -7,6 +7,7 @@ import module.Scenario;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 class BaseMoteurTest {
@@ -26,6 +27,10 @@ class BaseMoteurTest {
         for (int idQuete : scnTest.getQuetes().keySet()){
             assertEquals(scnCheck.getQuete(idQuete), scnTest.getQuete(idQuete));
         }
+
+        //Vérification du nombre de solutions
+        assertEquals(1, glTest.getNbSolutions());
+        assertEquals(10, new Glouton(0, 10).getNbSolutions());
     }
 
     @Test
@@ -47,5 +52,16 @@ class BaseMoteurTest {
         scTest.validerQuete(4);
 
         assertEquals(0, glTest.queteLaPlusProche());
+    }
+
+    @Test
+    public void calculDuree() throws FileNotFoundException {
+        Glouton glTest = new Glouton(0);
+        ArrayList<Integer> solution = new ArrayList<>();
+        solution.add(1);
+        solution.add(2);
+        solution.add(4);
+        solution.add(0);
+        assertEquals(27, glTest.calculDuree(solution));
     }
 }
