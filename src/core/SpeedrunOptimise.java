@@ -6,9 +6,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class Speedrun extends BaseMoteur {
+public class SpeedrunOptimise extends BaseMoteur {
 
-    public Speedrun(int idScenario) throws FileNotFoundException {
+    public SpeedrunOptimise(int idScenario) throws FileNotFoundException {
         super(idScenario);
     }
 
@@ -19,7 +19,7 @@ public class Speedrun extends BaseMoteur {
             // Solution efficace
             TreeMap<Integer, Integer> chemin = dijkstra(0);
 
-            // On utilise le chemin pour générer la solution, et dans le même temps on regard le total d'exp
+            // On utilise le chemin pour générer la solution, et dans le même temps on regarde le total d'exp
             int totalExp = 0;
             int lastID = chemin.get(-1);
             int requiredExp = scenario.getQuete(lastID).getExp();
