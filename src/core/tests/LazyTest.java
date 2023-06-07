@@ -26,7 +26,7 @@ public class LazyTest {
         ArrayList<Integer>[] resultExh = lzTest.run(false, true);
         assertEquals(Arrays.toString(new int[] {1, 2, 4, 3, 0}), resultExh[0].toString());
         assertEquals(Arrays.toString(new int[] {1, 2, 3, 4, 0}), resultExh[1].toString());
-        assertNull(resultEff[2]);
+        assertNull(resultExh[2]);
 
         lzTest = new Lazy(0, 10);
         resultEff = lzTest.run(true, false);
@@ -39,7 +39,7 @@ public class LazyTest {
 
         lzTest = new Lazy(0, 5);
         resultExh = lzTest.run(false, false);
-        assertNull(resultEff[2]);
+        assertNull(resultExh[2]);
         assertEquals(Arrays.toString(new int[] {1, 2, 4, 3, 0}), resultExh[1].toString());
         assertEquals(Arrays.toString(new int[] {1, 2, 3, 4, 0}), resultExh[0].toString());
 
