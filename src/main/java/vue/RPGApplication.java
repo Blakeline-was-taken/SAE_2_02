@@ -5,8 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
-
 public class RPGApplication extends Application {
 
     @Override

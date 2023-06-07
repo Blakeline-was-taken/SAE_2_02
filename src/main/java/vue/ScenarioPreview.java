@@ -1,5 +1,6 @@
 package vue;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -10,6 +11,8 @@ import module.Scenario;
 
 public class ScenarioPreview extends VBox {
     public ScenarioPreview(Scenario scn){
+        setPadding(new Insets(15));
+
         TableView <QuestView> previewTab = new TableView<>();
 
         TableColumn <QuestView, Integer> idQuest = new TableColumn<>("N° Quete");
@@ -37,8 +40,8 @@ public class ScenarioPreview extends VBox {
         condQuest.setPrefWidth(200);
 
         previewTab.getColumns().addAll(idQuest, nomQuest, posQuest, dureeQuest, expQuest, condQuest);
-        previewTab.setPrefHeight(500);
-        previewTab.setPrefWidth(1000);
+        previewTab.setPrefHeight(625);
+        previewTab.setPrefWidth(1002);
 
         for (TableColumn <QuestView, ?> col : previewTab.getColumns()){
             col.setResizable(false);
@@ -85,7 +88,7 @@ public class ScenarioPreview extends VBox {
                 if (getCond()[1][0] != 0){
                     result = result + "et " + getCond()[1][0] + " ";
                     if (getCond()[1][1] != 0){
-                        result = result + "ou " + getCond()[0][1] + " ";
+                        result = result + "ou " + getCond()[1][1] + " ";
                     }
                     result = result + "finie";
                 }
