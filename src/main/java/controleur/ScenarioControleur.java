@@ -16,15 +16,15 @@ public class ScenarioControleur implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event){
         if (event.getSource() instanceof ToggleButton btn){
             try {
-                Root.getField().clear();
-                Root.getField().add(new ScenarioPreview(new Scenario((String) btn.getUserData())));
+                Root.getRightField().clear();
+                Root.getRightField().add(new ScenarioPreview(new Scenario((String) btn.getUserData())));
                 Root.setSelectedScn((String) btn.getUserData());
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
         } else if (event.getSource() instanceof Button) {
-            Root.getField().clear();
-            Root.getField().add(new ModeSelection());
+            Root.getRightField().clear();
+            Root.getRightField().add(new ModeSelection());
         }
     }
 }
