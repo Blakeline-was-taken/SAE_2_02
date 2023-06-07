@@ -14,32 +14,39 @@ public class Speedrun extends BaseMoteur {
 
     @Override
     public ArrayList<Integer> run(boolean isEfficace) {
-        ArrayList <Integer> solution = new ArrayList<>();
+        ArrayList<Integer> solution = new ArrayList<>();
         if (isEfficace) {
+            // Solution efficace
             TreeMap<Integer, Integer> chemin = dijkstra(0);
 
+            // On utilise le chemin pour générer la solution, et dans le même temps on regard le total d'exp
             int totalExp = 0;
-            int LastID = chemin.get(-1);
-            int requiredExp = scenario.getQuete(LastID).getExp();
-            while (LastID != 0){
-                solution.add(LastID);
-                totalExp += scenario.getQuete(LastID).getExp();
-                LastID = chemin.get(LastID);
+            int lastID = chemin.get(-1);
+            int requiredExp = scenario.getQuete(lastID).getExp();
+            while (lastID != 0) {
+                solution.add(lastID);
+                totalExp += scenario.getQuete(lastID).getExp();
+                lastID = chemin.get(lastID);
             }
-            solution.add(LastID);
-            while (totalExp < requiredExp){
-                // Pas assez d'exp pour faire la quête finale
-                scenario.clearQuetesValidees();
-                joueur.deplacer(new int[] {0, 0});
+            solution.add(lastID);
 
-                // [Identifiant de la quête, Durée ajoutée par la quête, Index de position de la quête, Exp rapporté par la quête]
-                int [] bonus = new int[4];
-                for (int IDQuete : solution){
+            // Si nous n'avons pas assez d'exp pour faire la quête finale, on essaye de rajouter une quête à la solution
+            // de sorte à ce qu'elle reste optimale en terme de durée
+            while (totalExp < requiredExp) {
+                scenario.clearQuetesValidees();
+                joueur.deplacer(new int[]{0, 0});
+
+                // [Id de la quête à rajouter, Durée ajoutée par le détour que cause l'ajout de la quête,
+                //  Index de la position où insérer la quête dans la solution, Exp ajouté par la quête]
+                int[] bonus = new int[4];
+                for (int IDQuete : solution) {
                     if (IDQuete != 0) {
                         joueur.deplacer(scenario.getQuete(IDQuete));
+                        scenario.validerQuete(IDQuete);
                         int IDBonus = queteLaPlusProche();
                         Quete bonusQuete = scenario.getQuete(IDBonus);
                         int duree = joueur.deplacer(bonusQuete) + bonusQuete.getDuree() + scenario.getQuete(IDQuete + 1).distance(bonusQuete);
+                        // On ajoute une quête uniquement elle permets davoir assez d'exp et qu'elle cause le moins grand détour
                         if (bonus[0] == 0 || totalExp + bonusQuete.getExp() >= requiredExp && bonus[1] > duree) {
                             bonus[0] = IDBonus;
                             bonus[1] = duree;
@@ -52,6 +59,7 @@ public class Speedrun extends BaseMoteur {
                 solution.add(bonus[2], bonus[0]);
             }
         } else {
+            // Solution exhaustive
             while (!scenario.getQuetesValidees().contains(0)) {
                 int current = getNextExhaustif();
                 joueur.deplacer(scenario.getQuete(current));
@@ -67,46 +75,51 @@ public class Speedrun extends BaseMoteur {
         TreeMap<Integer, Integer> pred = new TreeMap<>();
         TreeMap<Integer, Integer> dist = new TreeMap<>();
         for (int id : scenario.getQuetes().keySet()) {
-            int value;
-            if (id == queteDebut) {
-                value = 0;
-            } else {
-                value = Integer.MAX_VALUE;
-            }
+            // La valeur vaut 0 si l'identifiant est celui du début, sinon elle vaut infini.
+            int value = (id == queteDebut) ? 0 : Integer.MAX_VALUE;
             dist.put(id, value);
         }
         ArrayList<Integer> restants = new ArrayList<>();
         restants.add(queteDebut);
 
-        while (restants.size() > 0) {
+        while (!restants.isEmpty()) {
+            // On prends la première quête de la liste
             int IDCurrent = restants.get(0);
             Quete current = scenario.getQuete(IDCurrent);
             restants.remove(0);
 
             int[][] precond = current.getCond();
+            // Si une quête est présente dans la deuxième liste, alors cette quête requiert plusieurs quêtes
+            // pour pouvoir être faite.
             if (precond[1][0] != 0) {
-                ArrayList[] chemins = new ArrayList[2];
+                ArrayList<Integer>[] chemins = new ArrayList[2];
+                // On parcours le reste du scenario pour chacune des quêtes présentes dans les préconditions
                 for (int i = 0; i < 2; i++) {
                     TreeMap<Integer, Integer> chemin = dijkstra(precond[i][0]);
-                    if (precond[i][1] != 0){
+                    if (precond[i][1] != 0) {
+                        // Dans le cas où on peut faire une quête ou une autre, on va regarder quel chemin prends le
+                        // moins de temps et garder celui-là.
                         TreeMap<Integer, Integer> chemin2 = dijkstra(precond[i][1]);
-                        if (calculDuree(solutionDePredecesseur(chemin)) > calculDuree(solutionDePredecesseur(chemin2))){
+                        if (calculDuree(solutionDePredecesseur(chemin)) > calculDuree(solutionDePredecesseur(chemin2))) {
                             chemin = chemin2;
                         }
                     }
                     chemins[i] = solutionDePredecesseur(chemin);
                 }
+                // Maintenant qu'on a nos deux chemins optimaux, on va essayer de les assembler de la meilleure façon possible.
                 TreeMap<Integer, Integer> predRestants = new TreeMap<>();
                 int nextKey = -1;
-                while (chemins[0].size() > 0 && chemins[1].size() > 0){
-                    if (chemins[0].get(0) == chemins[1].get(0)){
-                        predRestants.put(nextKey, (int) chemins[0].get(0));
+                while (!chemins[0].isEmpty() && !chemins[1].isEmpty()) {
+                    if (chemins[0].get(0).equals(chemins[1].get(0))) {
+                        // Si les deux prochaines quêtes sont les mêmes, on peut rejoindre les chemins.
+                        predRestants.put(nextKey, chemins[0].get(0));
                         nextKey = predRestants.get(nextKey);
                         chemins[0].remove(0);
                         chemins[1].remove(0);
                     } else {
-                        int idQuete0 = (int) chemins[0].get(0);
-                        int idQuete1 = (int) chemins[1].get(0);
+                        int idQuete0 = chemins[0].get(0);
+                        int idQuete1 = chemins[1].get(0);
+                        // On regarde quelle quête est la plus proche de la dernière (ou du point de départ)
                         boolean plusProche0;
                         if (nextKey == -1) {
                             int min_dist = Integer.min(joueur.distance(scenario.getQuete(idQuete0)), joueur.distance(scenario.getQuete(idQuete1)));
@@ -116,7 +129,8 @@ public class Speedrun extends BaseMoteur {
                             int min_dist = Integer.min(nextQuete.distance(scenario.getQuete(idQuete0)), nextQuete.distance(scenario.getQuete(idQuete1)));
                             plusProche0 = nextQuete.distance(scenario.getQuete(idQuete0)) == min_dist;
                         }
-                        if (plusProche0){
+                        // On ajoute la quête la plus proche au chemin
+                        if (plusProche0) {
                             predRestants.put(nextKey, idQuete0);
                             nextKey = predRestants.get(nextKey);
                             chemins[0].remove(0);
@@ -127,25 +141,30 @@ public class Speedrun extends BaseMoteur {
                         }
                     }
                 }
-                while (chemins[0].size() > 0){
-                    predRestants.put(nextKey, (int) chemins[0].get(0));
+                // On ajoute le reste du chemin où il reste encore des quêtes à la solution
+                while (!chemins[0].isEmpty()) {
+                    predRestants.put(nextKey, chemins[0].get(0));
                     nextKey = predRestants.get(nextKey);
                     chemins[0].remove(0);
                 }
-                while (chemins[1].size() > 0){
-                    predRestants.put(nextKey, (int) chemins[1].get(0));
+                while (!chemins[1].isEmpty()) {
+                    predRestants.put(nextKey, chemins[1].get(0));
                     nextKey = predRestants.get(nextKey);
                     chemins[1].remove(0);
                 }
-                for (int key : predRestants.keySet()){
+                // On ajoute les prédécesseurs générés à ceux qu'on avait déjà trouvés
+                for (int key : predRestants.keySet()) {
                     pred.put(key, predRestants.get(key));
                 }
                 pred.put(nextKey, IDCurrent);
+                // On peut terminer la boucle étant donné qu'on a tous les prédecesseurs depuis le début jusqu'à la fin
                 restants.clear();
             } else if (precond[0][0] == 0) {
+                // S'il n'y a pas de précondition alors on a trouvé le début
                 dist.put(-1, current.distance(joueur) + current.getDuree());
                 pred.put(-1, IDCurrent);
             } else {
+                // On applique l'algorithme de dijkstra aux préconditions
                 for (int i = 0; i < 2; i++) {
                     int IDQuete = precond[0][i];
                     if (IDQuete != 0) {
@@ -164,10 +183,10 @@ public class Speedrun extends BaseMoteur {
         return pred;
     }
 
-    private ArrayList<Integer> solutionDePredecesseur(TreeMap<Integer, Integer> pred){
-        ArrayList <Integer> solution = new ArrayList<>();
+    private ArrayList<Integer> solutionDePredecesseur(TreeMap<Integer, Integer> pred) {
+        ArrayList<Integer> solution = new ArrayList<>();
         int LastID = pred.get(-1);
-        while (LastID != 0 && pred.get(LastID) != null){
+        while (LastID != 0 && pred.containsKey(LastID)) {
             solution.add(LastID);
             LastID = pred.get(LastID);
         }
@@ -182,7 +201,7 @@ public class Speedrun extends BaseMoteur {
 
     @Override
     protected int getNextExhaustif() {
-        if (scenario.getAccessibleQuetes().contains(0) && scenario.getAccessibleQuetes().size() == 1){
+        if (scenario.getAccessibleQuetes().contains(0) && scenario.getAccessibleQuetes().size() == 1) {
             return 0;
         }
         int queteLaPlusCourte = 0;
