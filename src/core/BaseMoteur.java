@@ -12,10 +12,21 @@ public abstract class BaseMoteur {
 
     protected final Joueur joueur;
     protected final Scenario scenario;
+    protected final int nbSolutions;
+    protected final ArrayList<Integer>[] solutions;
 
     protected BaseMoteur(int idScenario) throws FileNotFoundException {
         joueur = new Joueur();
         scenario = new Scenario("scenario_"+idScenario+".txt");
+        nbSolutions = 1;
+        solutions = new ArrayList[1];
+    }
+
+    protected BaseMoteur(int idScenario, int nombre_solutions) throws FileNotFoundException {
+        joueur = new Joueur();
+        scenario = new Scenario("scenario_"+idScenario+".txt");
+        nbSolutions = nombre_solutions;
+        solutions = new ArrayList[nombre_solutions];
     }
 
     public int queteLaPlusProche(){
@@ -45,6 +56,10 @@ public abstract class BaseMoteur {
 
     public Scenario getScenario(){
         return scenario;
+    }
+
+    public int getNbSolutions(){
+        return nbSolutions;
     }
 
     public int calculDuree(ArrayList <Integer> solution){
