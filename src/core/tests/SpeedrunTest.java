@@ -38,7 +38,7 @@ public class SpeedrunTest {
         assertEquals(Arrays.toString(new int[] {1, 2, 3, 4, 0}), resultEff[0].toString());
 
         spTest = new Speedrun(0, 5);
-        resultExh = spTest.run(false, true);
+        resultExh = spTest.run(false, false);
         assertNull(resultExh[2]);
         assertEquals(Arrays.toString(new int[] {1, 2, 4, 3, 0}), resultExh[1].toString());
         assertEquals(Arrays.toString(new int[] {1, 2, 3, 4, 0}), resultExh[0].toString());
