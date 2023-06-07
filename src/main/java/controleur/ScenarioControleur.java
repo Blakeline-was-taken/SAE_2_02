@@ -18,6 +18,7 @@ public class ScenarioControleur implements EventHandler<ActionEvent> {
             try {
                 Root.getField().clear();
                 Root.getField().add(new ScenarioPreview(new Scenario((String) btn.getUserData())));
+                Root.setSelectedScn((String) btn.getUserData());
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
