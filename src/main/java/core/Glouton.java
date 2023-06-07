@@ -1,5 +1,6 @@
 package core;
 
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -80,4 +81,3 @@ public class Glouton extends BaseMoteur {
         return queteLaPlusProche();
     }
 }
-

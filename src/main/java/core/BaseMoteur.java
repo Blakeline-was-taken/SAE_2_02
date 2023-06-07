@@ -1,5 +1,6 @@
 package core;
 
+
 import modele.Joueur;
 import modele.Quete;
 import modele.Scenario;
@@ -78,6 +79,7 @@ public abstract class BaseMoteur {
         }
         int closest_id = quetesAccessibles.first();
         quetesAccessibles.remove(closest_id);
+
         for (int IDQuete : quetesAccessibles) {
             if (IDQuete != 0 && joueur.distance(scenario.getQuete(IDQuete)) < joueur.distance(scenario.getQuete(closest_id))) {
                 closest_id = IDQuete;
@@ -85,7 +87,6 @@ public abstract class BaseMoteur {
         }
         return closest_id;
     }
-
     /**
      * Méthode abstraite qui exécute le moteur du jeu.
      *
