@@ -48,6 +48,9 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
             String buttonContent = (String) btn.getUserData();
             switch (buttonContent) {
                 case "Texte" -> {
+                    if (ModeSelection.getAfterNbSolField().size() > 0){
+                        ModeSelection.getAfterNbSolField().clear();
+                    }
                     Scanner scanTxtField = new Scanner(ModeSelection.getNbSol());
                     try {
                         ModeSelection.setSelectedNbSol(scanTxtField.nextInt());
@@ -58,6 +61,9 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                     }
                 }
                 case "Toutes" -> {
+                    if (ModeSelection.getAfterNbSolField().size() > 0){
+                        ModeSelection.getAfterNbSolField().clear();
+                    }
                     ModeSelection.setSelectedNbSol(Integer.MAX_VALUE);
                     ModeSelection.setSelectedTypeSol(ModeSelection.getTypeSol());
                     ModeSelection.showSolution(ModeSelection.getAfterNbSolField());
