@@ -1,11 +1,18 @@
 package controleur;
 
+import core.Glouton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
+import javafx.scene.control.Separator;
 import javafx.scene.control.ToggleButton;
 import vue.ModeSelection;
+import vue.Root;
+import vue.UniqueSolutionsView;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ModeSelectionControleur implements EventHandler<ActionEvent> {
@@ -43,33 +50,57 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                     ModeSelection.setSelectedOpti(buttonContent);
                     ModeSelection.addMethodePanel(ModeSelection.getAfterOptiField());
                 }
+                case "NbSol" -> {
+                    switch (buttonContent) {
+                        case "Texte" -> {
+                            if (ModeSelection.getAfterNbSolField().size() > 0) {
+                                ModeSelection.getAfterNbSolField().clear();
+                            }
+                            Scanner scanTxtField = new Scanner(ModeSelection.getNbSol());
+                            try {
+                                ModeSelection.setSelectedNbSol(scanTxtField.nextInt());
+                                ModeSelection.setSelectedTypeSol(ModeSelection.getTypeSol());
+                                ModeSelection.showSolution(ModeSelection.getAfterNbSolField());
+                            } catch (Exception e) {
+                                System.out.println("Valeur invalide, rien ne se passe");
+                            }
+                        }
+                        case "Toutes" -> {
+                            if (ModeSelection.getAfterNbSolField().size() > 0) {
+                                ModeSelection.getAfterNbSolField().clear();
+                            }
+                            ModeSelection.setSelectedNbSol(Integer.MAX_VALUE);
+                            ModeSelection.setSelectedTypeSol(ModeSelection.getTypeSol());
+                            ModeSelection.showSolution(ModeSelection.getAfterNbSolField());
+                        }
+                    }
+                }
             }
         } else if (event.getSource() instanceof Button btn) {
             String buttonContent = (String) btn.getUserData();
             switch (buttonContent) {
-                case "Texte" -> {
-                    if (ModeSelection.getAfterNbSolField().size() > 0){
-                        ModeSelection.getAfterNbSolField().clear();
-                    }
-                    Scanner scanTxtField = new Scanner(ModeSelection.getNbSol());
-                    try {
-                        ModeSelection.setSelectedNbSol(scanTxtField.nextInt());
-                        ModeSelection.setSelectedTypeSol(ModeSelection.getTypeSol());
-                        ModeSelection.showSolution(ModeSelection.getAfterNbSolField());
-                    } catch (Exception e) {
-                        System.out.println("Valeur invalide, rien ne se passe");
-                    }
-                }
-                case "Toutes" -> {
-                    if (ModeSelection.getAfterNbSolField().size() > 0){
-                        ModeSelection.getAfterNbSolField().clear();
-                    }
-                    ModeSelection.setSelectedNbSol(Integer.MAX_VALUE);
-                    ModeSelection.setSelectedTypeSol(ModeSelection.getTypeSol());
-                    ModeSelection.showSolution(ModeSelection.getAfterNbSolField());
-                }
                 case "Valider" -> {
-                    // TODO : Appeler l'affichage des solutions (en fonction du nb de sol.)
+                    String mode = ModeSelection.getSelectedMode();
+                    String methode = ModeSelection.getSelectedMethod();
+                    if (mode.equals("Glouton")){
+                        try {
+                            String scn = Root.getSelectedScn();
+                            scn = scn.replace("scenario_", "").replace(".txt", "");
+                            Glouton parcours = new Glouton(Integer.parseInt(scn));
+                            ArrayList<Integer> solution = parcours.run(methode.equals("Efficace"));
+
+                            Root.initSolutionView(mode, methode);
+                            Root.getRightField().clear();
+                            Root.getRightField().addAll(new Separator(Orientation.VERTICAL), new UniqueSolutionsView(solution));
+                        } catch (FileNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else if (mode.equals("Optimise")) {
+                        return; // TODO : Check si = 1 (afficher en 1 solution comme glouton) sinon multiple sol avec tableau
+                    }
+                }
+                case "New" -> {
+                    Root.initSelectionView();
                 }
             }
         }
