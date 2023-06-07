@@ -13,7 +13,7 @@ public class SpeedrunOptimise extends BaseMoteur {
     }
 
     @Override
-    public ArrayList<Integer> run(boolean isEfficace) {
+    public ArrayList<Integer>[] run(boolean isEfficace) {
         ArrayList<Integer> solution = new ArrayList<>();
         if (isEfficace) {
             // Solution efficace
@@ -68,7 +68,8 @@ public class SpeedrunOptimise extends BaseMoteur {
                 solution.add(current);
             }
         }
-        return solution;
+        solutions[0] = solution;
+        return solutions;
     }
 
     private TreeMap<Integer, Integer> dijkstra(int queteDebut) {

@@ -14,7 +14,7 @@ public class Glouton extends BaseMoteur{
     }
 
     @Override
-    public ArrayList <Integer> run(boolean isEfficace) {
+    public ArrayList<Integer>[] run(boolean isEfficace) {
         ArrayList <Integer> solution = new ArrayList<>();
         while (!scenario.getQuetesValidees().contains(0)){
             int current;
@@ -28,7 +28,8 @@ public class Glouton extends BaseMoteur{
             scenario.validerQuete(current);
             solution.add(current);
         }
-        return solution;
+        solutions[0] = solution;
+        return solutions;
     }
 
     @Override

@@ -44,7 +44,7 @@ public abstract class BaseMoteur {
         return closest_id;
     }
 
-    public abstract ArrayList <Integer> run(boolean isEfficace);
+    public abstract ArrayList<Integer>[] run(boolean isEfficace);
 
     protected abstract int getNextEfficace();
 
