@@ -63,7 +63,7 @@ public class ScenarioPreview extends VBox {
 
     public static class QuestView extends Quete{
         private final int id;
-        QuestView(int parId, int[] parCoord, int[][] parCond, int parDuree, int parExp, String parIntitule){
+        public QuestView(int parId, int[] parCoord, int[][] parCond, int parDuree, int parExp, String parIntitule){
             super(parCoord, parCond, parDuree, parExp, parIntitule);
             id = parId;
         }

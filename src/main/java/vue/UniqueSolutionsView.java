@@ -28,7 +28,7 @@ public class UniqueSolutionsView extends VBox {
         solutionScroll.setFitToWidth(true);
         Label title = new Label("Voici la solution trouvée :");
         display.getChildren().addAll(title, solutionScroll);
-        String recapStr = "";
+        StringBuilder recapStr = new StringBuilder();
 
         int exp = 0;
         int duree = 0;
@@ -66,9 +66,9 @@ public class UniqueSolutionsView extends VBox {
             scrollBox.getChildren().addAll(new Separator(Orientation.HORIZONTAL), turnNbLbl, movementLbl, curentQuestLbl, expPlusLbl, dureeLbl);
 
             if (idQuest != 0) {
-                recapStr = recapStr + idQuest + "  ->  ";
+                recapStr.append(idQuest).append("  ->  ");
             } else {
-                recapStr = recapStr + idQuest;
+                recapStr.append(idQuest);
             }
         }
 
