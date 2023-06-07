@@ -99,9 +99,7 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                         return; // TODO : Check si = 1 (afficher en 1 solution comme glouton) sinon multiple sol avec tableau
                     }
                 }
-                case "New" -> {
-                    Root.initSelectionView();
-                }
+                case "New" -> Root.initSelectionView();
             }
         }
     }
