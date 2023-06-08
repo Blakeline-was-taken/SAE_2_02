@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"vue","l":"controleur"},{"m":"vue","l":"core"},{"m":"vue","l":"core.tests"},{"m":"vue","l":"modele"},{"m":"vue","l":"vue"}];updateSearchResults();
