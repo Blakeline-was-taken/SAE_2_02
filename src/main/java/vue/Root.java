@@ -70,7 +70,7 @@ public class Root extends HBox {
         VBox optiBox = createVBoxParametre(opti, "Type d'optimisation :");
         VBox methodeBox = createVBoxParametre(methode, "Méthode de parcours :");
         VBox nbSolBox;
-        if (Integer.parseInt(nbSol) == Integer.MAX_VALUE) {
+        if (Integer.parseInt(nbSol) >= 1999999) {
             nbSolBox = createVBoxParametre("Toutes", "Nombre de solutions :");
         } else {
             nbSolBox = createVBoxParametre(nbSol, "Nombre de solutions :");

@@ -44,12 +44,11 @@ public class MultipleSolutionView extends VBox {
 
         for (TableColumn<SolutionView, ?> col : solutionTab.getColumns()){
             col.setResizable(false);
-            col.setSortable(false);
             col.setReorderable(false);
         }
 
         for (int i = 0; i < solutions.length && solutions[i] != null; i++){
-            SolutionView currentSol = new SolutionView(i, solutions[i], Root.getSelectedScn());
+            SolutionView currentSol = new SolutionView(i+1, solutions[i], Root.getSelectedScn());
             solutionTab.getItems().add(currentSol);
         }
 

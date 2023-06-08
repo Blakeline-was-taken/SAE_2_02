@@ -1,6 +1,6 @@
 package controleur;
 
-import core.Glouton;
+import core.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.ToggleButton;
 import vue.ModeSelection;
+import vue.MultipleSolutionView;
 import vue.Root;
 import vue.UniqueSolutionsView;
 
@@ -68,7 +69,7 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                             if (ModeSelection.getAfterNbSolField().size() > 0) {
                                 ModeSelection.getAfterNbSolField().clear();
                             }
-                            ModeSelection.setSelectedNbSol(Integer.MAX_VALUE);
+                            ModeSelection.setSelectedNbSol(2000000);
                             ModeSelection.setSelectedTypeSol(ModeSelection.getTypeSol());
                             ModeSelection.showSolution(ModeSelection.getAfterNbSolField());
                         }
@@ -81,12 +82,11 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                 case "Valider" -> {
                     String mode = ModeSelection.getSelectedMode();
                     String methode = ModeSelection.getSelectedMethod();
+                    int scnUsed = Integer.parseInt(Root.getSelectedScn().replace("scenario_", "").replace(".txt", ""));
                     if (mode.equals("Glouton")){
                         try {
-                            String scn = Root.getSelectedScn();
-                            scn = scn.replace("scenario_", "").replace(".txt", "");
-                            Glouton parcours = new Glouton(Integer.parseInt(scn));
-                            ArrayList<Integer>[] solution = parcours.run(methode.equals("Efficace"), false);
+                            Glouton parcours = new Glouton(scnUsed);
+                            ArrayList<Integer>[] solution = parcours.run(methode.equals("Efficace"), true);
 
                             Root.initSolutionView(mode, methode);
                             Root.getRightField().clear();
@@ -95,26 +95,81 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                             throw new RuntimeException(e);
                         }
                     } else if (mode.equals("Optimise")) {
+                        String typeSol = ModeSelection.getSelectedTypeSol();
                         switch (ModeSelection.getSelectedOpti()){
                             case "Duree" -> {
-                                if (ModeSelection.getSelectedTypeSol().equals("Meilleures")){
-
+                                BaseMoteur bot;
+                                ArrayList<Integer>[] solution;
+                                if (ModeSelection.getSelectedNbSol() == 1){
+                                    try {
+                                        bot = new Speedrun(scnUsed);
+                                        solution = bot.run(methode.equals("Efficace"), typeSol.equals("Meilleures"));
+                                        Root.initSolutionView(mode, methode, ModeSelection.getSelectedOpti(), String.valueOf(ModeSelection.getSelectedNbSol()), typeSol);
+                                        Root.getRightField().clear();
+                                        Root.getRightField().addAll(new Separator(Orientation.VERTICAL), new UniqueSolutionsView(solution));
+                                    } catch (FileNotFoundException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 } else {
-
-                                }
-                            }
-                            case "NbQuest" -> {
-                                if (ModeSelection.getSelectedTypeSol().equals("Meilleures")){
-
-                                } else {
-
+                                    try {
+                                        bot = new Speedrun(scnUsed, ModeSelection.getSelectedNbSol());
+                                        solution = bot.run(methode.equals("Efficace"), typeSol.equals("Meilleures"));
+                                        Root.initSolutionView(mode, methode, ModeSelection.getSelectedOpti(), String.valueOf(ModeSelection.getSelectedNbSol()), typeSol);
+                                        Root.getRightField().clear();
+                                        Root.getRightField().addAll(new Separator(Orientation.VERTICAL), new MultipleSolutionView(solution));
+                                    } catch (FileNotFoundException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }
                             }
                             case "Dist" -> {
-                                if (ModeSelection.getSelectedTypeSol().equals("Meilleures")){
-
+                                BaseMoteur bot;
+                                ArrayList<Integer>[] solution;
+                                if (ModeSelection.getSelectedNbSol() == 1){
+                                    try {
+                                        bot = new Lazy(scnUsed);
+                                        solution = bot.run(methode.equals("Efficace"), typeSol.equals("Meilleures"));
+                                        Root.initSolutionView(mode, methode, ModeSelection.getSelectedOpti(), String.valueOf(ModeSelection.getSelectedNbSol()), typeSol);
+                                        Root.getRightField().clear();
+                                        Root.getRightField().addAll(new Separator(Orientation.VERTICAL), new UniqueSolutionsView(solution));
+                                    } catch (FileNotFoundException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 } else {
-
+                                    try {
+                                        bot = new Lazy(scnUsed, ModeSelection.getSelectedNbSol());
+                                        solution = bot.run(methode.equals("Efficace"), typeSol.equals("Meilleures"));
+                                        Root.initSolutionView(mode, methode, ModeSelection.getSelectedOpti(), String.valueOf(ModeSelection.getSelectedNbSol()), typeSol);
+                                        Root.getRightField().clear();
+                                        Root.getRightField().addAll(new Separator(Orientation.VERTICAL), new MultipleSolutionView(solution));
+                                    } catch (FileNotFoundException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }
+                            }
+                            case "NbQuest" -> {
+                                BaseMoteur bot;
+                                ArrayList<Integer>[] solution;
+                                if (ModeSelection.getSelectedNbSol() == 1){
+                                    try {
+                                        bot = new NombreQuetes(scnUsed);
+                                        solution = bot.run(methode.equals("Efficace"), typeSol.equals("Meilleures"));
+                                        Root.initSolutionView(mode, methode, ModeSelection.getSelectedOpti(), String.valueOf(ModeSelection.getSelectedNbSol()), typeSol);
+                                        Root.getRightField().clear();
+                                        Root.getRightField().addAll(new Separator(Orientation.VERTICAL), new UniqueSolutionsView(solution));
+                                    } catch (FileNotFoundException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                } else {
+                                    try {
+                                        bot = new NombreQuetes(scnUsed, ModeSelection.getSelectedNbSol());
+                                        solution = bot.run(methode.equals("Efficace"), typeSol.equals("Meilleures"));
+                                        Root.initSolutionView(mode, methode, ModeSelection.getSelectedOpti(), String.valueOf(ModeSelection.getSelectedNbSol()), typeSol);
+                                        Root.getRightField().clear();
+                                        Root.getRightField().addAll(new Separator(Orientation.VERTICAL), new MultipleSolutionView(solution));
+                                    } catch (FileNotFoundException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }
                             }
                         }
