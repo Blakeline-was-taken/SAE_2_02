@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
- * La classe MultipleSolutionView représente la vue affichant les solutions multiples d'une quête.
+ * La classe MultipleSolutionView représente la vue affichant les solutions multiples d'un scénario.
  * Elle hérite de la classe VBox.
  */
 public class MultipleSolutionView extends VBox {

@@ -15,6 +15,10 @@ import vue.UniqueSolutionsView;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * Classe de controleur permettant de lier la vue au modèle lors de la sélection des paramètres de parcours
+ * Implémente EventHandler
+ */
 public class ModeSelectionControleur implements EventHandler<ActionEvent> {
 
     /**

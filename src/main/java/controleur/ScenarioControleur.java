@@ -11,6 +11,10 @@ import vue.ScenarioPreview;
 
 import java.io.FileNotFoundException;
 
+/**
+ * Classe de controleur permettant de lier la vue au modèle lors de la lecture des scénarios
+ * Implémente EventHandler
+ */
 public class ScenarioControleur implements EventHandler<ActionEvent> {
 
     /**

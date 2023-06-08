@@ -106,7 +106,7 @@ public class Scenario {
      * Renvoie un ensemble contenant les identifiants des quêtes accessibles.
      * Une quête est accessible si toutes ses préconditions sont satisfaites.
      *
-     * @return TreeSet<Integer> - L'ensemble des identifiants des quêtes accessibles.
+     * @return TreeSet[Integer] - L'ensemble des identifiants des quêtes accessibles.
      */
     public TreeSet<Integer> getAccessibleQuetes() {
         TreeSet<Integer> quetesAccessibles = new TreeSet<>();
@@ -138,7 +138,7 @@ public class Scenario {
     /**
      * Renvoie la liste des quêtes du scénario.
      *
-     * @return TreeMap<Integer, Quete> - La liste des quêtes.
+     * @return TreeMap[Integer, Quete] - La liste des quêtes.
      */
     public TreeMap<Integer, Quete> getQuetes() {
         return quetes;
@@ -148,7 +148,7 @@ public class Scenario {
      * Renvoie la liste des successeurs de chaque quête.
      * Les successeurs d'une quête sont les quêtes qui ont cette quête comme précondition.
      *
-     * @return TreeMap<Integer, TreeSet<Integer>> - La liste des successeurs de chaque quête.
+     * @return TreeMap[Integer, TreeSet[Integer]] - La liste des successeurs de chaque quête.
      */
     public TreeMap<Integer, TreeSet<Integer>> getSuccesseurs() {
         return successeurs;
@@ -157,7 +157,7 @@ public class Scenario {
     /**
      * Renvoie la liste des quêtes validées.
      *
-     * @return TreeSet<Integer> - La liste des quêtes validées.
+     * @return TreeSet[Integer] - La liste des quêtes validées.
      */
     public TreeSet<Integer> getQuetesValidees() {
         return quetesValidees;

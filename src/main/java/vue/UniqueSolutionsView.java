@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * La classe UniqueSolutionsView représente la vue affichant les solutions uniques d'une quête.
+ * La classe UniqueSolutionsView représente la vue affichant les solutions uniques d'un scénario.
  * Elle hérite de la classe VBox.
  */
 public class UniqueSolutionsView extends VBox {
