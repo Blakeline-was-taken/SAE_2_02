@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 /**
  * Classe de test pour la classe Joueur.
  */
-class JoueurTest {
+public class JoueurTest {
     /**
      * Test du constructeur de la classe Joueur.
      * Vérifie si les valeurs initiales de l'expérience et des coordonnées sont correctement initialisées.
      */
     @Test
-    void constructeur() {
+    public void constructeur() {
         Joueur joueurTest = new Joueur();
         assertEquals(joueurTest.getExp(), 0);
         assertEquals(joueurTest.getCoord()[0], 0);
@@ -25,7 +25,7 @@ class JoueurTest {
      * Vérifie si les coordonnées du joueur sont correctement mises à jour après un déplacement.
      */
     @Test
-    void deplacer() {
+    public void deplacer() {
         Joueur jTest = new Joueur();
         jTest.deplacer(new int[] {5, 4});
         assertEquals(jTest.getCoord()[0], 5);
@@ -37,7 +37,7 @@ class JoueurTest {
      * Vérifie si l'expérience du joueur est correctement mise à jour après l'ajout d'expérience.
      */
     @Test
-    void addExp() {
+    public void addExp() {
         Joueur jTest = new Joueur();
         jTest.addExp(15);
         assertEquals(jTest.getExp(), 15);
@@ -50,7 +50,7 @@ class JoueurTest {
      * Vérifie si la distance entre deux joueurs est correctement calculée pour différentes positions.
      */
     @Test
-    void distance() {
+    public void distance() {
         Joueur j1 = new Joueur();
         Joueur j2 = new Joueur();
 
