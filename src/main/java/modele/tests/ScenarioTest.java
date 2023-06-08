@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Classe de test pour la classe Scenario.
  */
-class ScenarioTest {
+public class ScenarioTest {
     /**
      * Test du constructeur de la classe Scenario.
      * Vérifie si les valeurs des quêtes et des successeurs sont correctement initialisées en lisant un fichier de scénario.
