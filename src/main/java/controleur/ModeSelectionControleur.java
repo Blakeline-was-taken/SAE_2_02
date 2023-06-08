@@ -16,35 +16,41 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class ModeSelectionControleur implements EventHandler<ActionEvent> {
-    public void handle(ActionEvent event){
-        if (event.getSource() instanceof ToggleButton btn){
+
+    /**
+     * Gère les événements déclenchés par les boutons.
+     *
+     * @param event l'événement déclenché
+     */
+    public void handle(ActionEvent event) {
+        if (event.getSource() instanceof ToggleButton btn) {
             String sourceMenu = (String) btn.getToggleGroup().getUserData();
             String buttonContent = (String) btn.getUserData();
-            switch (sourceMenu){
+            switch (sourceMenu) {
                 case "Mode" -> {
-                    if (ModeSelection.getAfterModeField().size() > 0){
+                    if (ModeSelection.getAfterModeField().size() > 0) {
                         ModeSelection.getAfterModeField().clear();
                     }
                     ModeSelection.setSelectedMode(buttonContent);
-                    if (buttonContent.equals("Glouton")){
+                    if (buttonContent.equals("Glouton")) {
                         ModeSelection.addMethodePanel(ModeSelection.getAfterModeField());
                     } else if (buttonContent.equals("Optimise")) {
                         ModeSelection.addOptimisationPanel(ModeSelection.getAfterModeField());
                     }
                 }
                 case "Methode" -> {
-                    if (ModeSelection.getAfterMethodField().size() > 0){
+                    if (ModeSelection.getAfterMethodField().size() > 0) {
                         ModeSelection.getAfterMethodField().clear();
                     }
                     ModeSelection.setSelectedMethod(buttonContent);
-                    if (ModeSelection.getSelectedMode().equals("Glouton")){
+                    if (ModeSelection.getSelectedMode().equals("Glouton")) {
                         ModeSelection.showSolution(ModeSelection.getAfterMethodField());
                     } else if (ModeSelection.getSelectedMode().equals("Optimise")) {
                         ModeSelection.addNbSolutionPanel(ModeSelection.getAfterMethodField());
                     }
                 }
                 case "Opti" -> {
-                    if (ModeSelection.getAfterOptiField().size() > 0){
+                    if (ModeSelection.getAfterOptiField().size() > 0) {
                         ModeSelection.getAfterOptiField().clear();
                     }
                     ModeSelection.setSelectedOpti(buttonContent);
@@ -83,7 +89,7 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                     String mode = ModeSelection.getSelectedMode();
                     String methode = ModeSelection.getSelectedMethod();
                     int scnUsed = Integer.parseInt(Root.getSelectedScn().replace("scenario_", "").replace(".txt", ""));
-                    if (mode.equals("Glouton")){
+                    if (mode.equals("Glouton")) {
                         try {
                             Glouton parcours = new Glouton(scnUsed);
                             ArrayList<Integer>[] solution = parcours.run(methode.equals("Efficace"), true);
@@ -96,11 +102,11 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                         }
                     } else if (mode.equals("Optimise")) {
                         String typeSol = ModeSelection.getSelectedTypeSol();
-                        switch (ModeSelection.getSelectedOpti()){
+                        switch (ModeSelection.getSelectedOpti()) {
                             case "Duree" -> {
                                 BaseMoteur bot;
                                 ArrayList<Integer>[] solution;
-                                if (ModeSelection.getSelectedNbSol() == 1){
+                                if (ModeSelection.getSelectedNbSol() == 1) {
                                     try {
                                         bot = new Speedrun(scnUsed);
                                         solution = bot.run(methode.equals("Efficace"), typeSol.equals("Meilleures"));
@@ -125,7 +131,7 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                             case "Dist" -> {
                                 BaseMoteur bot;
                                 ArrayList<Integer>[] solution;
-                                if (ModeSelection.getSelectedNbSol() == 1){
+                                if (ModeSelection.getSelectedNbSol() == 1) {
                                     try {
                                         bot = new Lazy(scnUsed);
                                         solution = bot.run(methode.equals("Efficace"), typeSol.equals("Meilleures"));
@@ -150,7 +156,7 @@ public class ModeSelectionControleur implements EventHandler<ActionEvent> {
                             case "NbQuest" -> {
                                 BaseMoteur bot;
                                 ArrayList<Integer>[] solution;
-                                if (ModeSelection.getSelectedNbSol() == 1){
+                                if (ModeSelection.getSelectedNbSol() == 1) {
                                     try {
                                         bot = new NombreQuetes(scnUsed);
                                         solution = bot.run(methode.equals("Efficace"), typeSol.equals("Meilleures"));

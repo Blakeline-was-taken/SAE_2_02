@@ -1,12 +1,11 @@
-module com.example.test {
+module vue {
     requires javafx.controls;
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
     requires org.junit.jupiter.api;
-    requires org.junit.platform.commons;
 
-    opens com.example.test to javafx.fxml;
+    opens vue to javafx.fxml;
     exports vue;
     exports modele;
     exports core;

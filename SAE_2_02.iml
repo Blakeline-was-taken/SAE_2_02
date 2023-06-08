@@ -17,5 +17,8 @@
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-engine:1.9.2" level="project" />
     <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.9.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:20" level="project" />
+    <orderEntry type="library" name="junit.jupiter" level="project" />
+    <orderEntry type="library" name="junit.jupiter.api" level="project" />
+    <orderEntry type="library" name="junit.platform.commons" level="project" />
   </component>
 </module>

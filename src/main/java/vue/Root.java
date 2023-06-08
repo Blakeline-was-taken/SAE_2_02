@@ -12,11 +12,18 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * Classe représentant la racine de l'interface graphique.
+ */
 public class Root extends HBox {
-    private static ObservableList <Node> rightField;
+    private static ObservableList<Node> rightField;
     private static final ScenarioControleur scnControleur = new ScenarioControleur();
     private static String selectedScn;
     private final static VBox leftField = new VBox(20);
+
+    /**
+     * Constructeur de la classe Root.
+     */
     public Root() {
         HBox panel = new HBox(50);
         rightField = panel.getChildren();
@@ -24,6 +31,9 @@ public class Root extends HBox {
         getChildren().addAll(leftField, panel);
     }
 
+    /**
+     * Initialise la vue de sélection des scénarios.
+     */
     public static void initSelectionView(){
         leftField.getChildren().clear();
         rightField.clear();
@@ -42,6 +52,11 @@ public class Root extends HBox {
         }
     }
 
+    /**
+     * Initialise la vue de la solution.
+     * @param mode Le mode de parcours.
+     * @param methode La méthode de parcours.
+     */
     public static void initSolutionView(String mode, String methode){
         leftField.getChildren().clear();
         rightField.clear();
@@ -59,6 +74,14 @@ public class Root extends HBox {
         leftField.getChildren().addAll(scnBox, modeBox, methodeBox, newSolution);
     }
 
+    /**
+     * Initialise la vue de la solution avec des paramètres supplémentaires.
+     * @param mode Le mode de parcours.
+     * @param methode La méthode de parcours.
+     * @param opti Le type d'optimisation.
+     * @param nbSol Le nombre de solutions.
+     * @param typeSol Le type de solutions.
+     */
     public static void initSolutionView(String mode, String methode, String opti, String nbSol, String typeSol){
         leftField.getChildren().clear();
         rightField.clear();
@@ -84,6 +107,12 @@ public class Root extends HBox {
         leftField.getChildren().addAll(scnBox, modeBox, optiBox, methodeBox, typeSolBox, nbSolBox, newSolution);
     }
 
+    /**
+     * Crée un VBox contenant un paramètre et son intitulé.
+     * @param param La valeur du paramètre.
+     * @param intitule L'intitulé du paramètre.
+     * @return Le VBox contenant le paramètre.
+     */
     private static VBox createVBoxParametre(String param, String intitule){
         VBox paramBox = new VBox();
         Label paramTitleLbl = new Label(intitule);
@@ -94,18 +123,34 @@ public class Root extends HBox {
         return paramBox;
     }
 
+    /**
+     * Définit le scénario sélectionné.
+     * @param scnStr Le nom du scénario sélectionné.
+     */
     public static void setSelectedScn(String scnStr){
         selectedScn = scnStr;
     }
 
+    /**
+     * Obtient le scénario sélectionné.
+     * @return Le nom du scénario sélectionné.
+     */
     public static String getSelectedScn(){
         return selectedScn;
     }
 
+    /**
+     * Obtient le contrôleur du scénario.
+     * @return Le contrôleur du scénario.
+     */
     public static ScenarioControleur getScnControleur() {
         return scnControleur;
     }
 
+    /**
+     * Obtient les éléments de l'interface situés à droite.
+     * @return Les éléments de l'interface situés à droite.
+     */
     public static ObservableList<Node> getRightField(){
         return rightField;
     }

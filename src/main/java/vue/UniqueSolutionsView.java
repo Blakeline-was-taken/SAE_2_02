@@ -14,7 +14,18 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * La classe UniqueSolutionsView représente la vue affichant les solutions uniques d'une quête.
+ * Elle hérite de la classe VBox.
+ */
 public class UniqueSolutionsView extends VBox {
+
+    /**
+     * Constructeur de la classe UniqueSolutionsView.
+     *
+     * @param solutions Les solutions uniques à afficher.
+     * @throws FileNotFoundException si le fichier n'est pas trouvé.
+     */
     public UniqueSolutionsView(ArrayList<Integer>[] solutions) throws FileNotFoundException {
         ArrayList<Integer> solution = solutions[0];
         VBox display = new VBox(5);
@@ -36,7 +47,7 @@ public class UniqueSolutionsView extends VBox {
         int i = 0;
         Joueur player = new Joueur();
 
-        for (int idQuest : solution){
+        for (int idQuest : solution) {
             Quete currentQuest = scn.getQuete(idQuest);
             duree = duree + player.deplacer(currentQuest);
 

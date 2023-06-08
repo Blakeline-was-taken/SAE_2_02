@@ -7,8 +7,23 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
+/**
+ * Classe principale de l'application RPG.
+ */
 public class RPGApplication extends Application {
 
+    /**
+     * Méthode principale qui lance l'application.
+     * @param args Les arguments de la ligne de commande.
+     */
+    public static void main(String [] args){
+        Application.launch(args);
+    }
+
+    /**
+     * Méthode de démarrage de l'application.
+     * @param stage La fenêtre principale de l'application.
+     */
     @Override
     public void start(Stage stage){
         HBox root = new Root();
@@ -17,9 +32,5 @@ public class RPGApplication extends Application {
         scene.getStylesheets().add((new File("css"+File.separator+"style.css")).toURI().toString());
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String [] args){
-        Application.launch(args);
     }
 }

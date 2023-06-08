@@ -10,6 +10,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * La classe ModeSelection représente la vue permettant de sélectionner le mode de parcours.
+ * Elle hérite de la classe HBox.
+ */
 public class ModeSelection extends HBox {
     private static final ModeSelectionControleur modeControleur = new ModeSelectionControleur();
     private static ObservableList<Node> afterModeField = (new HBox()).getChildren();
@@ -23,7 +27,11 @@ public class ModeSelection extends HBox {
     private static String selectedTypeSol;
     private static ComboBox<String> typeCmb;
     private static TextField nbSolTxt;
-    public ModeSelection(){
+
+    /**
+     * Constructeur de la classe ModeSelection.
+     */
+    public ModeSelection() {
         VBox modeCol = new VBox(50);
         modeCol.setPadding(new Insets(30));
 
@@ -50,7 +58,12 @@ public class ModeSelection extends HBox {
         getChildren().addAll(new Separator(Orientation.VERTICAL), modeCol, afterModeBox);
     }
 
-    public static void addMethodePanel(ObservableList<Node> field){
+    /**
+     * Ajoute un panneau de sélection de méthode de parcours.
+     *
+     * @param field La liste des nœuds à ajouter après le panneau de sélection de méthode.
+     */
+    public static void addMethodePanel(ObservableList<Node> field) {
         VBox methodCol = new VBox(50);
         methodCol.setPadding(new Insets(30));
 
@@ -77,7 +90,12 @@ public class ModeSelection extends HBox {
         field.addAll(new Separator(Orientation.VERTICAL), methodCol, afterMethodBox);
     }
 
-    public static void addOptimisationPanel(ObservableList<Node> field){
+    /**
+     * Ajoute un panneau de sélection d'optimisation.
+     *
+     * @param field La liste des nœuds à ajouter après le panneau de sélection d'optimisation.
+     */
+    public static void addOptimisationPanel(ObservableList<Node> field) {
         VBox optiCol = new VBox(50);
         optiCol.setPadding(new Insets(30));
 
@@ -108,7 +126,12 @@ public class ModeSelection extends HBox {
         field.addAll(new Separator(Orientation.VERTICAL), optiCol, afterOptiBox);
     }
 
-    public static void addNbSolutionPanel(ObservableList<Node> field){
+    /**
+     * Ajoute un panneau de sélection du nombre de solutions.
+     *
+     * @param field La liste des nœuds à ajouter après le panneau de sélection du nombre de solutions.
+     */
+    public static void addNbSolutionPanel(ObservableList<Node> field) {
         VBox nbSolCol = new VBox(30);
         nbSolCol.setPadding(new Insets(30));
 
@@ -140,7 +163,12 @@ public class ModeSelection extends HBox {
         field.addAll(new Separator(Orientation.VERTICAL), nbSolCol, afterNbSolBox);
     }
 
-    public static void showSolution(ObservableList<Node> field){
+    /**
+     * Affiche le panneau de visualisation des solutions.
+     *
+     * @param field La liste des nœuds à ajouter après le panneau de visualisation des solutions.
+     */
+    public static void showSolution(ObservableList<Node> field) {
         HBox solBox = new HBox();
         solBox.setPadding(new Insets(50));
         solBox.setAlignment(Pos.CENTER);
@@ -154,70 +182,155 @@ public class ModeSelection extends HBox {
         field.addAll(new Separator(Orientation.VERTICAL), solBox);
     }
 
-    public static ModeSelectionControleur getModeControleur(){
+    /**
+     * Retourne le contrôleur du mode de sélection.
+     *
+     * @return Le contrôleur du mode de sélection.
+     */
+    public static ModeSelectionControleur getModeControleur() {
         return modeControleur;
     }
 
-    public static ObservableList<Node> getAfterModeField(){
+    /**
+     * Retourne la liste des nœuds après le panneau de sélection de mode.
+     *
+     * @return La liste des nœuds après le panneau de sélection de mode.
+     */
+    public static ObservableList<Node> getAfterModeField() {
         return afterModeField;
     }
 
-    public static ObservableList<Node> getAfterMethodField(){
+    /**
+     * Retourne la liste des nœuds après le panneau de sélection de méthode.
+     *
+     * @return La liste des nœuds après le panneau de sélection de méthode.
+     */
+    public static ObservableList<Node> getAfterMethodField() {
         return afterMethodField;
     }
 
-    public static ObservableList<Node> getAfterOptiField(){
+    /**
+     * Retourne la liste des nœuds après le panneau de sélection d'optimisation.
+     *
+     * @return La liste des nœuds après le panneau de sélection d'optimisation.
+     */
+    public static ObservableList<Node> getAfterOptiField() {
         return afterOptiField;
     }
 
-    public static ObservableList<Node> getAfterNbSolField(){
+    /**
+     * Retourne la liste des nœuds après le panneau de sélection du nombre de solutions.
+     *
+     * @return La liste des nœuds après le panneau de sélection du nombre de solutions.
+     */
+    public static ObservableList<Node> getAfterNbSolField() {
         return afterNbSolField;
     }
 
+    /**
+     * Retourne le mode de parcours sélectionné.
+     *
+     * @return Le mode de parcours sélectionné.
+     */
     public static String getSelectedMode() {
         return selectedMode;
     }
 
+    /**
+     * Définit le mode de parcours sélectionné.
+     *
+     * @param selectedMode Le mode de parcours sélectionné.
+     */
     public static void setSelectedMode(String selectedMode) {
         ModeSelection.selectedMode = selectedMode;
     }
 
+    /**
+     * Retourne la méthode de parcours sélectionnée.
+     *
+     * @return La méthode de parcours sélectionnée.
+     */
     public static String getSelectedMethod() {
         return selectedMethod;
     }
 
+    /**
+     * Définit la méthode de parcours sélectionnée.
+     *
+     * @param selectedMethod La méthode de parcours sélectionnée.
+     */
     public static void setSelectedMethod(String selectedMethod) {
         ModeSelection.selectedMethod = selectedMethod;
     }
 
+    /**
+     * Retourne l'élément à optimiser sélectionné.
+     *
+     * @return L'élément à optimiser sélectionné.
+     */
     public static String getSelectedOpti() {
         return selectedOpti;
     }
 
+    /**
+     * Définit l'élément à optimiser sélectionné.
+     *
+     * @param selectedOpti L'élément à optimiser sélectionné.
+     */
     public static void setSelectedOpti(String selectedOpti) {
         ModeSelection.selectedOpti = selectedOpti;
     }
 
+    /**
+     * Retourne le nombre de solutions sélectionné.
+     *
+     * @return Le nombre de solutions sélectionné.
+     */
     public static int getSelectedNbSol() {
         return selectedNbSol;
     }
 
+    /**
+     * Définit le nombre de solutions sélectionné.
+     *
+     * @param selectedNbSol Le nombre de solutions sélectionné.
+     */
     public static void setSelectedNbSol(int selectedNbSol) {
         ModeSelection.selectedNbSol = selectedNbSol;
     }
 
+    /**
+     * Retourne le type de solution sélectionné.
+     *
+     * @return Le type de solution sélectionné.
+     */
     public static String getSelectedTypeSol() {
         return selectedTypeSol;
     }
 
+    /**
+     * Définit le type de solution sélectionné.
+     *
+     * @param selectedTypeSol Le type de solution sélectionné.
+     */
     public static void setSelectedTypeSol(String selectedTypeSol) {
         ModeSelection.selectedTypeSol = selectedTypeSol;
     }
 
+    /**
+     * Retourne le String de sélection du type de solution.
+     *
+     * @return Le String de sélection du type de solution.
+     */
     public static String getTypeSol() {
         return typeCmb.getSelectionModel().getSelectedItem();
     }
 
+    /**
+     * Retourne le String de sélection du nombre de solutions.
+     *
+     * @return Le String de sélection du nombre de solutions.
+     */
     public static String getNbSol() {
         return nbSolTxt.getText();
     }

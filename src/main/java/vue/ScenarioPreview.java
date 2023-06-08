@@ -9,33 +9,41 @@ import javafx.scene.layout.VBox;
 import modele.Quete;
 import modele.Scenario;
 
+/**
+ * Classe représentant le panneau d'aperçu du scénario.
+ */
 public class ScenarioPreview extends VBox {
+
+    /**
+     * Constructeur de la classe ScenarioPreview.
+     * @param scn Le scénario à afficher.
+     */
     public ScenarioPreview(Scenario scn){
         setPadding(new Insets(15));
 
-        TableView <QuestView> previewTab = new TableView<>();
+        TableView<QuestView> previewTab = new TableView<>();
 
-        TableColumn <QuestView, Integer> idQuest = new TableColumn<>("N° Quete");
+        TableColumn<QuestView, Integer> idQuest = new TableColumn<>("N° Quete");
         idQuest.setCellValueFactory(new PropertyValueFactory<>("id"));
         idQuest.setPrefWidth(100);
 
-        TableColumn <QuestView, String> nomQuest = new TableColumn<>("Nom");
+        TableColumn<QuestView, String> nomQuest = new TableColumn<>("Nom");
         nomQuest.setCellValueFactory(new PropertyValueFactory<>("intitule"));
         nomQuest.setPrefWidth(400);
 
-        TableColumn <QuestView, String> posQuest = new TableColumn<>("Position");
+        TableColumn<QuestView, String> posQuest = new TableColumn<>("Position");
         posQuest.setCellValueFactory(new PropertyValueFactory<>("posView"));
         posQuest.setPrefWidth(100);
 
-        TableColumn <QuestView, Integer> dureeQuest = new TableColumn<>("Durée");
+        TableColumn<QuestView, Integer> dureeQuest = new TableColumn<>("Durée");
         dureeQuest.setCellValueFactory(new PropertyValueFactory<>("duree"));
         dureeQuest.setPrefWidth(100);
 
-        TableColumn <QuestView, Integer> expQuest = new TableColumn<>("Expérience");
+        TableColumn<QuestView, Integer> expQuest = new TableColumn<>("Expérience");
         expQuest.setCellValueFactory(new PropertyValueFactory<>("exp"));
         expQuest.setPrefWidth(100);
 
-        TableColumn <QuestView, String> condQuest = new TableColumn<>("Conditions");
+        TableColumn<QuestView, String> condQuest = new TableColumn<>("Conditions");
         condQuest.setCellValueFactory(new PropertyValueFactory<>("precondView"));
         condQuest.setPrefWidth(200);
 
@@ -43,7 +51,7 @@ public class ScenarioPreview extends VBox {
         previewTab.setPrefHeight(625);
         previewTab.setPrefWidth(1002);
 
-        for (TableColumn <QuestView, ?> col : previewTab.getColumns()){
+        for (TableColumn<QuestView, ?> col : previewTab.getColumns()){
             col.setResizable(false);
             col.setSortable(false);
             col.setReorderable(false);
@@ -61,20 +69,46 @@ public class ScenarioPreview extends VBox {
         getChildren().addAll(previewTab, btn);
     }
 
-    public static class QuestView extends Quete{
+    /**
+     * Classe interne représentant la vue de la quête.
+     */
+    public static class QuestView extends Quete {
         private final int id;
+
+        /**
+         * Constructeur de la classe QuestView.
+         * @param parId L'identifiant de la quête.
+         * @param parCoord Les coordonnées de la quête.
+         * @param parCond Les conditions de la quête.
+         * @param parDuree La durée de la quête.
+         * @param parExp L'expérience de la quête.
+         * @param parIntitule L'intitulé de la quête.
+         */
         public QuestView(int parId, int[] parCoord, int[][] parCond, int parDuree, int parExp, String parIntitule){
             super(parCoord, parCond, parDuree, parExp, parIntitule);
             id = parId;
         }
+
+        /**
+         * Obtient l'identifiant de la quête.
+         * @return L'identifiant de la quête.
+         */
         public int getId() {
             return id;
         }
 
+        /**
+         * Obtient la représentation de la position de la quête.
+         * @return La représentation de la position de la quête.
+         */
         public String getPosView(){
             return "(" + getCoord()[0] + " ; " + getCoord()[1] + ")";
         }
 
+        /**
+         * Obtient la représentation des préconditions de la quête.
+         * @return La représentation des préconditions de la quête.
+         */
         public String getPrecondView(){
             String result = "";
             if (getCond()[0][0] == 0){
